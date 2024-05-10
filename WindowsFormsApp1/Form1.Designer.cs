@@ -30,6 +30,7 @@
         {
             this.btnSon = new System.Windows.Forms.Button();
             this.btnSa = new System.Windows.Forms.Button();
+            this.btn_DBtest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSon
@@ -52,11 +53,22 @@
             this.btnSa.UseVisualStyleBackColor = true;
             this.btnSa.Click += new System.EventHandler(this.btnSa_Click);
             // 
+            // btn_DBtest
+            // 
+            this.btn_DBtest.Location = new System.Drawing.Point(50, 378);
+            this.btn_DBtest.Name = "btn_DBtest";
+            this.btn_DBtest.Size = new System.Drawing.Size(121, 49);
+            this.btn_DBtest.TabIndex = 2;
+            this.btn_DBtest.Text = "DBtest";
+            this.btn_DBtest.UseVisualStyleBackColor = true;
+            this.btn_DBtest.Click += new System.EventHandler(this.btn_DBtest_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_DBtest);
             this.Controls.Add(this.btnSa);
             this.Controls.Add(this.btnSon);
             this.Name = "Form1";
@@ -69,6 +81,7 @@
 
         private System.Windows.Forms.Button btnSon;
         private System.Windows.Forms.Button btnSa;
+        private System.Windows.Forms.Button btn_DBtest;
     }
 }
 

@@ -16,6 +16,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
+        DataSet DataSet;
         private void btnSon_Click(object sender, EventArgs e)
         {
             FormSon formSon = new FormSon();
@@ -32,5 +33,12 @@ namespace WindowsFormsApp1
             this.Visible = false;
         }
 
+        private void btn_DBtest_Click(object sender, EventArgs e)
+        {
+            DataSetTest formTest = new DataSetTest();
+            formTest.Owner = this;
+            formTest.Show();
+            this.Visible = false;
+        }
     }
 }

@@ -20,6 +20,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
+
         private NetworkStream m_networkstream;
         private TcpListener m_listener;
 

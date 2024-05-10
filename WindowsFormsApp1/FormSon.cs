@@ -59,33 +59,7 @@ namespace WindowsFormsApp1
             this.m_networkstream = this.m_client.GetStream();
         }
 
-        private void btn_init_Click(object sender, EventArgs e)
-        {
-            if (!this.m_bConnect)
-            {
-                return;
-            }
-            Initiailize Init = new Initiailize();
-            Init.Type = (int)PacketType.초기화;
-            Init.Data = Int32.Parse(this.txt_init.Text);
-
-            Packet.Serialize(Init).CopyTo(this.sendBuffer, 0);
-            this.Send();
-        }
-
-        private void btn_login_Click(object sender, EventArgs e)
-        {
-            if (!this.m_bConnect)
-            {
-                return;
-            }
-            Login login = new Login();
-            login.Type = (int)PacketType.로그인;
-            login.m_strID = this.txt_login.Text;
-
-            Packet.Serialize(login).CopyTo(this.sendBuffer, 0);
-            this.Send();
-        }
+       
 
         private void FormSon_FormClosed(object sender, FormClosedEventArgs e)
         {
