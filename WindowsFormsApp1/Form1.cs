@@ -40,5 +40,13 @@ namespace WindowsFormsApp1
             formTest.Show();
             this.Visible = false;
         }
+
+        private void btn_SonUITest_Click(object sender, EventArgs e)
+        {
+            SonUI formUI = new SonUI();
+            formUI.Owner = this;
+            formUI.Show();
+            this.Visible = false;
+        }
     }
 }
