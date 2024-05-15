@@ -21,14 +21,8 @@ namespace WindowsFormsApp1
         }
         private NetworkStream m_networkstream;
         private TcpClient m_client;
-
         private byte[] sendBuffer = new byte[1024 * 4];
-
         private bool m_bConnect = false;
-
-        public Initiailize m_initializeClass;
-        public Login m_loginClass;
-
         public ShoppingCart shoppingCart;
 
 
@@ -69,7 +63,11 @@ namespace WindowsFormsApp1
 
         private void btn_damgi_Click(object sender, EventArgs e)
         {
-            Beverage beverage = new Beverage(txt_bvgname.Text, int.Parse(txt_bvgprice.Text));
+            bool isDessert;
+            if (txt_bvgIsDessert.Text == "0")  isDessert = false;
+            else isDessert = true;
+
+            Beverage beverage = new Beverage(int.Parse(txt_bvgprice.Text), txt_bvgname.Text, txt_bvgCategory.Text, isDessert);
             shoppingCart.AddItem(beverage);
             RefreshShoppingCart();
         }
@@ -78,6 +76,8 @@ namespace WindowsFormsApp1
             lvw_shoppingcart.Clear();
             lvw_shoppingcart.Columns.Add("name", "Name");
             lvw_shoppingcart.Columns.Add("price", "Price");
+            lvw_shoppingcart.Columns.Add("category", "Category");
+            lvw_shoppingcart.Columns.Add("isDessert", "IsDessert");
         }
 
         private void FormSon_Load(object sender, EventArgs e)
@@ -91,8 +91,10 @@ namespace WindowsFormsApp1
             lvw_shoppingcart.Items.Clear();
             foreach (var item in shoppingCart.items)
             {
-                ListViewItem bvgItem = new ListViewItem(item.Name);
-                bvgItem.SubItems.Add(item.Price.ToString());
+                ListViewItem bvgItem = new ListViewItem(item.getName());
+                bvgItem.SubItems.Add(item.getPrice().ToString());
+                bvgItem.SubItems.Add(item.getCategory().ToString());
+                bvgItem.SubItems.Add(item.getIsDessert().ToString());
                 lvw_shoppingcart.Items.Add(bvgItem);
             }
         }

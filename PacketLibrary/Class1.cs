@@ -10,9 +10,8 @@ namespace PacketLibrary
 {
     public enum PacketType
     {
-        초기화 = 0,
-        로그인,
-        주문
+        주문 = 0,
+        알림
     }
 
     public enum PacketSendERROR
@@ -75,13 +74,33 @@ namespace PacketLibrary
     [Serializable]
     public class Beverage : Packet
     {
-        public string Name { get; set; }
-        public double Price { get; set; }
-
-        public Beverage(string name, double price)
+        private int price;
+        private string name;
+        private string category;
+        private bool isDessert;
+        public int getPrice()
         {
-            Name = name;
-            Price = price;
+            return price;
+        }
+        public string getName()
+        {
+            return name;
+        }
+        public string getCategory()
+        {
+            return category;
+        }
+        public bool getIsDessert()
+        {
+            return isDessert;
+        }
+
+        public Beverage(int price, string name, string category, bool isDessert)
+        {
+            this.price = price;
+            this.name = name;
+            this.category = category;
+            this.isDessert = isDessert;
         }
     }
 
@@ -105,15 +124,15 @@ namespace PacketLibrary
             items.Remove(beverage);
         }
 
-        public double CalculateTotalPrice()
+        public int CalculateTotalPrice()
         {
-            double total = 0;
-            foreach (var item in items)
+            int total = 0;
+            foreach(var item in items)
             {
-                total += item.Price;
+                total += item.getPrice();
             }
             return total;
         }
-
     }
+
 }

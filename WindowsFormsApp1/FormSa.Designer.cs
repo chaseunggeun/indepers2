@@ -29,22 +29,41 @@
         private void InitializeComponent()
         {
             this.txt_server_state = new System.Windows.Forms.TextBox();
+            this.txt_message = new System.Windows.Forms.TextBox();
+            this.btn_SendMessage = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txt_server_state
             // 
-            this.txt_server_state.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txt_server_state.Location = new System.Drawing.Point(0, 0);
             this.txt_server_state.Multiline = true;
             this.txt_server_state.Name = "txt_server_state";
-            this.txt_server_state.Size = new System.Drawing.Size(800, 450);
+            this.txt_server_state.Size = new System.Drawing.Size(800, 367);
             this.txt_server_state.TabIndex = 0;
+            // 
+            // txt_message
+            // 
+            this.txt_message.Location = new System.Drawing.Point(32, 408);
+            this.txt_message.Name = "txt_message";
+            this.txt_message.Size = new System.Drawing.Size(310, 28);
+            this.txt_message.TabIndex = 1;
+            // 
+            // btn_SendMessage
+            // 
+            this.btn_SendMessage.Location = new System.Drawing.Point(370, 413);
+            this.btn_SendMessage.Name = "btn_SendMessage";
+            this.btn_SendMessage.Size = new System.Drawing.Size(75, 23);
+            this.btn_SendMessage.TabIndex = 2;
+            this.btn_SendMessage.Text = "button1";
+            this.btn_SendMessage.UseVisualStyleBackColor = true;
             // 
             // FormSa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 474);
+            this.Controls.Add(this.btn_SendMessage);
+            this.Controls.Add(this.txt_message);
             this.Controls.Add(this.txt_server_state);
             this.Name = "FormSa";
             this.Text = "FormSa";
@@ -58,5 +77,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox txt_server_state;
+        private System.Windows.Forms.TextBox txt_message;
+        private System.Windows.Forms.Button btn_SendMessage;
     }
 }

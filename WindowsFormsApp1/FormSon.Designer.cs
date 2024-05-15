@@ -37,6 +37,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btn_damgi = new System.Windows.Forms.Button();
             this.btn_order = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txt_bvgCategory = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txt_bvgIsDessert = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txt_ip
@@ -59,7 +63,7 @@
             // lvw_shoppingcart
             // 
             this.lvw_shoppingcart.HideSelection = false;
-            this.lvw_shoppingcart.Location = new System.Drawing.Point(89, 215);
+            this.lvw_shoppingcart.Location = new System.Drawing.Point(85, 276);
             this.lvw_shoppingcart.Name = "lvw_shoppingcart";
             this.lvw_shoppingcart.Size = new System.Drawing.Size(665, 274);
             this.lvw_shoppingcart.TabIndex = 6;
@@ -70,7 +74,7 @@
             // 
             this.txt_bvgname.Location = new System.Drawing.Point(89, 181);
             this.txt_bvgname.Name = "txt_bvgname";
-            this.txt_bvgname.Size = new System.Drawing.Size(184, 28);
+            this.txt_bvgname.Size = new System.Drawing.Size(191, 28);
             this.txt_bvgname.TabIndex = 7;
             // 
             // txt_bvgprice
@@ -100,7 +104,7 @@
             // 
             // btn_damgi
             // 
-            this.btn_damgi.Location = new System.Drawing.Point(534, 168);
+            this.btn_damgi.Location = new System.Drawing.Point(655, 181);
             this.btn_damgi.Name = "btn_damgi";
             this.btn_damgi.Size = new System.Drawing.Size(95, 40);
             this.btn_damgi.TabIndex = 11;
@@ -110,19 +114,55 @@
             // 
             // btn_order
             // 
-            this.btn_order.Location = new System.Drawing.Point(635, 168);
+            this.btn_order.Location = new System.Drawing.Point(655, 230);
             this.btn_order.Name = "btn_order";
-            this.btn_order.Size = new System.Drawing.Size(115, 40);
+            this.btn_order.Size = new System.Drawing.Size(95, 40);
             this.btn_order.TabIndex = 12;
             this.btn_order.Text = "주문";
             this.btn_order.UseVisualStyleBackColor = true;
             this.btn_order.Click += new System.EventHandler(this.btn_order_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(86, 217);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 18);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "카테고리";
+            // 
+            // txt_bvgCategory
+            // 
+            this.txt_bvgCategory.Location = new System.Drawing.Point(89, 238);
+            this.txt_bvgCategory.Name = "txt_bvgCategory";
+            this.txt_bvgCategory.Size = new System.Drawing.Size(191, 28);
+            this.txt_bvgCategory.TabIndex = 13;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(313, 221);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(80, 18);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "케익여부";
+            // 
+            // txt_bvgIsDessert
+            // 
+            this.txt_bvgIsDessert.Location = new System.Drawing.Point(316, 242);
+            this.txt_bvgIsDessert.Name = "txt_bvgIsDessert";
+            this.txt_bvgIsDessert.Size = new System.Drawing.Size(202, 28);
+            this.txt_bvgIsDessert.TabIndex = 15;
             // 
             // FormSon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 573);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txt_bvgIsDessert);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txt_bvgCategory);
             this.Controls.Add(this.btn_order);
             this.Controls.Add(this.btn_damgi);
             this.Controls.Add(this.label2);
@@ -152,5 +192,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_damgi;
         private System.Windows.Forms.Button btn_order;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txt_bvgCategory;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txt_bvgIsDessert;
     }
 }

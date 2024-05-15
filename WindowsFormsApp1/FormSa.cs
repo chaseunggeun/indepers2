@@ -31,8 +31,6 @@ namespace WindowsFormsApp1
 
         private Thread m_thread;
 
-        public Initiailize m_initializeClass;
-        public Login m_loginClass;
         public ShoppingCart m_shoppingCartClass;
 
         public void RUN()
@@ -78,24 +76,6 @@ namespace WindowsFormsApp1
                 Packet packet = (Packet)Packet.Desserialize(this.readBuffer);
 
                 switch((int)packet.Type) {
-                    case (int)PacketType.초기화:
-                        {
-                            this.m_initializeClass = (Initiailize)Packet.Desserialize(this.readBuffer);
-                            this.Invoke(new MethodInvoker(delegate ()
-                            {
-                                this.txt_server_state.AppendText("패킷 전송 성공. " + "Initialize Class Data is " + this.m_initializeClass.Data + "\r\n");
-                            }));
-                            break;
-                        }
-                    case (int)PacketType.로그인:
-                        {
-                            this.m_loginClass = (Login)Packet.Desserialize(this.readBuffer);
-                            this.Invoke(new MethodInvoker(delegate ()
-                            {
-                                this.txt_server_state.AppendText("패킷 전송 성공. " + "Login Class Data is " + this.m_loginClass.m_strID + "\r\n");
-                            }));
-                            break;
-                        }
                     case (int)PacketType.주문:
                         {
                             ShoppingCart receivedCart = (ShoppingCart)Packet.Desserialize(this.readBuffer);
@@ -104,7 +84,8 @@ namespace WindowsFormsApp1
                                 this.txt_server_state.AppendText("패킷 전송 성공. " + "Received Shopping Cart Data is " + receivedCart + "\r\n");
                                 foreach (var item in receivedCart.items)
                                 {
-                                    this.txt_server_state.AppendText("이름: " + item.Name + ", " + "가격: " + item.Price.ToString() + "\r\n");
+                                    this.txt_server_state.AppendText("이름: " + item.getName() + ", " + "가격: " + item.getPrice().ToString()
+                                        + ", " + "카테고리: "+ item.getCategory() + ", " + "케익여부: " + item.getIsDessert() + "\r\n");
                                 }
                                 
                             }));
@@ -126,5 +107,7 @@ namespace WindowsFormsApp1
             this.m_networkstream.Close();
             this.m_thread.Abort();
         }
+
+
     }
 }
