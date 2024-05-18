@@ -44,14 +44,14 @@ namespace WindowsFormsApp1
                 var wdg = (Widget)ss;
                 Option option = new Option(wdg);
                 option.Owner = this;
-                option.Show();
+                option.ShowDialog();
                 shoppingCart.AddItem(beverage);
                 foreach (DataGridViewRow item in grid.Rows)
                 {
                     if (item.Cells[0].Value.ToString() == wdg.lblTitle.Text)
                     {
                         item.Cells[1].Value = int.Parse(item.Cells[1].Value.ToString()) + 1 ;
-                        item.Cells[2].Value = (int.Parse(item.Cells[1].Value.ToString()) * int.Parse(item.Cells[2].Value.ToString())); 
+                        item.Cells[2].Value = (int.Parse(item.Cells[1].Value.ToString())) * wdg._cost; 
                         CalculateTotal();
                         return;
                     }
