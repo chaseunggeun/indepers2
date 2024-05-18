@@ -66,8 +66,8 @@ namespace WindowsFormsApp1
             bool isDessert;
             if (txt_bvgIsDessert.Text == "0")  isDessert = false;
             else isDessert = true;
-
-            Beverage beverage = new Beverage(int.Parse(txt_bvgprice.Text), txt_bvgname.Text, txt_bvgCategory.Text, isDessert);
+            int[] option = { };
+            Beverage beverage = new Beverage(int.Parse(txt_bvgprice.Text), txt_bvgname.Text, txt_bvgCategory.Text, isDessert, option);
             shoppingCart.AddItem(beverage);
             RefreshShoppingCart();
         }
@@ -78,6 +78,7 @@ namespace WindowsFormsApp1
             lvw_shoppingcart.Columns.Add("price", "Price");
             lvw_shoppingcart.Columns.Add("category", "Category");
             lvw_shoppingcart.Columns.Add("isDessert", "IsDessert");
+            lvw_shoppingcart.Columns.Add("option", "Option");
         }
 
         private void FormSon_Load(object sender, EventArgs e)

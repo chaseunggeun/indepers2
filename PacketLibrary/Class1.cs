@@ -78,6 +78,7 @@ namespace PacketLibrary
         private string name;
         private string category;
         private bool isDessert;
+        private int[] option;
         public int getPrice()
         {
             return price;
@@ -95,12 +96,13 @@ namespace PacketLibrary
             return isDessert;
         }
 
-        public Beverage(int price, string name, string category, bool isDessert)
+        public Beverage(int price, string name, string category, bool isDessert, int[] option)
         {
             this.price = price;
             this.name = name;
             this.category = category;
             this.isDessert = isDessert;
+            this.option = option;
         }
     }
 

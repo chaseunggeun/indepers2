@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.Components;
+using PacketLibrary;
 
 namespace WindowsFormsApp1
 {
@@ -17,6 +18,8 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
+        public ShoppingCart shoppingCart;
+        public Beverage beverage;
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -39,6 +42,10 @@ namespace WindowsFormsApp1
             w.OnSelect += (ss, ee) =>
             {
                 var wdg = (Widget)ss;
+                Option option = new Option(wdg);
+                option.Owner = this;
+                option.Show();
+                shoppingCart.AddItem(beverage);
                 foreach (DataGridViewRow item in grid.Rows)
                 {
                     if (item.Cells[0].Value.ToString() == wdg.lblTitle.Text)
@@ -102,6 +109,16 @@ namespace WindowsFormsApp1
                     wdg.Visible = wdg.lblTitle.Text.ToLower().Contains(txtSearch.Text.Trim().ToLower());
                 }
             }
+        }
+
+        private void SonUI_Load(object sender, EventArgs e)
+        {
+            shoppingCart = new ShoppingCart();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(beverage.getPrice().ToString());
         }
     }
 }
