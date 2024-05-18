@@ -52,11 +52,13 @@
             this.bunifuPanel1.Controls.Add(this.lblCost);
             this.bunifuPanel1.Controls.Add(this.lblTitle);
             this.bunifuPanel1.ForeColor = System.Drawing.SystemColors.Window;
-            this.bunifuPanel1.Location = new System.Drawing.Point(3, 3);
+            this.bunifuPanel1.Location = new System.Drawing.Point(3, 4);
+            this.bunifuPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bunifuPanel1.Name = "bunifuPanel1";
             this.bunifuPanel1.ShowBorders = true;
-            this.bunifuPanel1.Size = new System.Drawing.Size(285, 156);
+            this.bunifuPanel1.Size = new System.Drawing.Size(326, 195);
             this.bunifuPanel1.TabIndex = 0;
+            this.bunifuPanel1.Click += new System.EventHandler(this.bunifuPictureBox1_Click);
             // 
             // imgImage
             // 
@@ -67,9 +69,10 @@
             this.imgImage.BorderRadius = 0;
             this.imgImage.Image = ((System.Drawing.Image)(resources.GetObject("imgImage.Image")));
             this.imgImage.IsCircle = false;
-            this.imgImage.Location = new System.Drawing.Point(182, 15);
+            this.imgImage.Location = new System.Drawing.Point(208, 19);
+            this.imgImage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.imgImage.Name = "imgImage";
-            this.imgImage.Size = new System.Drawing.Size(100, 118);
+            this.imgImage.Size = new System.Drawing.Size(114, 148);
             this.imgImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.imgImage.TabIndex = 3;
             this.imgImage.TabStop = false;
@@ -82,46 +85,52 @@
             this.lblCost.AutoEllipsis = false;
             this.lblCost.BackColor = System.Drawing.Color.White;
             this.lblCost.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.lblCost.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lblCost.CursorType = System.Windows.Forms.Cursors.Default;
-            this.lblCost.Font = new System.Drawing.Font("Cooper Std Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCost.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCost.CursorType = System.Windows.Forms.Cursors.Hand;
+            this.lblCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCost.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(103)))), ((int)(((byte)(0)))));
-            this.lblCost.Location = new System.Drawing.Point(24, 59);
+            this.lblCost.Location = new System.Drawing.Point(26, 128);
+            this.lblCost.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblCost.Name = "lblCost";
             this.lblCost.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblCost.Size = new System.Drawing.Size(100, 23);
+            this.lblCost.Size = new System.Drawing.Size(104, 29);
             this.lblCost.TabIndex = 2;
             this.lblCost.Text = "30,00krw";
             this.lblCost.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.lblCost.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            this.lblCost.Click += new System.EventHandler(this.bunifuPictureBox1_Click);
             // 
             // lblTitle
             // 
             this.lblTitle.AllowParentOverrides = false;
             this.lblTitle.AutoEllipsis = false;
             this.lblTitle.BackColor = System.Drawing.Color.White;
-            this.lblTitle.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lblTitle.CursorType = System.Windows.Forms.Cursors.Default;
-            this.lblTitle.Font = new System.Drawing.Font("Cooper Std Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblTitle.CursorType = System.Windows.Forms.Cursors.Hand;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblTitle.Location = new System.Drawing.Point(23, 15);
+            this.lblTitle.Location = new System.Drawing.Point(26, 19);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblTitle.Size = new System.Drawing.Size(101, 19);
+            this.lblTitle.Size = new System.Drawing.Size(126, 25);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "아이스 아메리카노";
             this.lblTitle.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.lblTitle.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            this.lblTitle.Click += new System.EventHandler(this.bunifuPictureBox1_Click);
             // 
             // Widget
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.bunifuPanel1);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Widget";
-            this.Size = new System.Drawing.Size(291, 174);
+            this.Size = new System.Drawing.Size(333, 218);
+            this.Click += new System.EventHandler(this.bunifuPictureBox1_Click);
             this.bunifuPanel1.ResumeLayout(false);
             this.bunifuPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgImage)).EndInit();

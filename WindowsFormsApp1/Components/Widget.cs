@@ -15,7 +15,7 @@ namespace WindowsFormsApp1.Components
     public partial class Widget : UserControl
     {
         private categories _category;
-        private double _cost;
+        public double _cost;
 
         public event EventHandler OnSelect = null;
         public Widget()
