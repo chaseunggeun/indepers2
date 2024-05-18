@@ -34,6 +34,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.saveBtn = new System.Windows.Forms.Button();
             this.cmdSheets = new System.Windows.Forms.ComboBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,6 +96,10 @@
             this.cmdSheets.TabIndex = 5;
             this.cmdSheets.SelectedIndexChanged += new System.EventHandler(this.cmdSheets_SelectedIndexChanged);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
@@ -122,5 +128,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.ComboBox cmdSheets;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
