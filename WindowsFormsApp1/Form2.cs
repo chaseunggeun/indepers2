@@ -1,0 +1,130 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp1
+{
+    public partial class Form2 : Form
+    {
+        private DataSet1 dataSet;
+
+        public Form2()
+        {
+            InitializeComponent();
+        }
+
+        private void LoadCsv(string drinkFilePath, string optionFilePath)
+        {
+            // DataSet 초기화
+            dataSet = new DataSet1();
+
+            // Drink 테이블 로드
+            LoadCsvToTable(drinkFilePath, "Drink");
+            // Option 테이블 로드
+            LoadCsvToTable(optionFilePath, "Option");
+
+            cmdSheets.Items.Clear();
+            cmdSheets.Items.Add("Drink");
+            cmdSheets.Items.Add("Option");
+            cmdSheets.SelectedIndex = 0;
+        }
+
+        private void LoadCsvToTable(string filePath, string tableName)
+        {
+            var table = dataSet.Tables[tableName];
+
+            using (var reader = new StreamReader(filePath))
+            {
+                string line = reader.ReadLine();
+                if (line == null) return;
+
+                // 컬럼 이름 가져오기
+                var columns = line.Split(',');
+
+                // 데이터 로드
+                while ((line = reader.ReadLine()) != null)
+                {
+                    var values = line.Split(',');
+
+                    // LINQ를 사용하여 DataRow 생성 및 값 할당
+                    var newRow = table.NewRow();
+                    columns.Select((col, index) =>
+                    {
+                        newRow[col] = values[index];
+                        return true;
+                    }).ToArray();
+                    table.Rows.Add(newRow);
+                }
+            }
+        }
+
+
+        private void SaveTableToCsv(DataTable table, string filePath)
+        {
+            var lines = new List<string>();
+
+            // 컬럼 이름 추가
+            string[] columnNames = table.Columns.Cast<DataColumn>().Select(column => column.ColumnName).ToArray();
+            var header = string.Join(",", columnNames);
+            lines.Add(header);
+
+            // 데이터 추가
+            var valueLines = table.AsEnumerable()
+                .Select(row => string.Join(",", row.ItemArray.Select(val => val.ToString())));
+            lines.AddRange(valueLines);
+
+            // 파일에 쓰기 (UTF-8 형식으로 인코딩)
+            File.WriteAllLines(filePath, lines, Encoding.UTF8);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            string drinkFilePath = @"C:\Users\기호\Desktop\새 폴더\Drink.csv";
+            string optionFilePath = @"C:\Users\기호\Desktop\새 폴더\Option.csv";
+
+            if (File.Exists(drinkFilePath) && File.Exists(optionFilePath))
+            {
+                LoadCsv(drinkFilePath, optionFilePath);
+            }
+            else
+            {
+                MessageBox.Show("유효한 파일 경로를 확인하세요.", "파일 경로 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Form2_Load_1(object sender, EventArgs e)
+        {
+            cmdSheets.SelectedIndexChanged += cmdSheets_SelectedIndexChanged;
+        }
+
+        private void saveBtn_Click_1(object sender, EventArgs e)
+        {
+            // 사용자가 지정한 저장 경로
+            string saveDirectory = @"C:\Users\기호\Desktop\새 폴더\"; // 사용자가 원하는 경로로 수정해주세요.
+
+            // Drink 테이블을 저장할 파일 경로
+            string drinkFilePath = Path.Combine(saveDirectory, "Drink.csv");
+            // Option 테이블을 저장할 파일 경로
+            string optionFilePath = Path.Combine(saveDirectory, "Option.csv");
+
+            // Drink 테이블 저장
+            SaveTableToCsv(dataSet.Tables["Drink"], drinkFilePath);
+            // Option 테이블 저장
+            SaveTableToCsv(dataSet.Tables["Option"], optionFilePath);
+
+            MessageBox.Show("CSV 파일이 저장되었습니다.", "저장 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void cmdSheets_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dataSet != null && cmdSheets.SelectedItem != null)
+            {
+                dataGridView1.DataSource = dataSet.Tables[cmdSheets.SelectedItem.ToString()];
+            }
+        }
+    }
+}

@@ -26,17 +26,11 @@ namespace WindowsFormsApp1 {
         
         private DrinkDataTable tableDrink;
         
-        private OrderDrinkDataTable tableOrderDrink;
-        
         private OptionDataTable tableOption;
         
         private OrderDataTable tableOrder;
         
-        private global::System.Data.DataRelation relationOption_OrderDrink;
-        
-        private global::System.Data.DataRelation relationDrink_OrderDrink;
-        
-        private global::System.Data.DataRelation relationOrder_OrderDrink;
+        private OrderDrinkDataTable tableOrderDrink;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -69,14 +63,14 @@ namespace WindowsFormsApp1 {
                 if ((ds.Tables["Drink"] != null)) {
                     base.Tables.Add(new DrinkDataTable(ds.Tables["Drink"]));
                 }
-                if ((ds.Tables["OrderDrink"] != null)) {
-                    base.Tables.Add(new OrderDrinkDataTable(ds.Tables["OrderDrink"]));
-                }
                 if ((ds.Tables["Option"] != null)) {
                     base.Tables.Add(new OptionDataTable(ds.Tables["Option"]));
                 }
                 if ((ds.Tables["Order"] != null)) {
                     base.Tables.Add(new OrderDataTable(ds.Tables["Order"]));
+                }
+                if ((ds.Tables["OrderDrink"] != null)) {
+                    base.Tables.Add(new OrderDrinkDataTable(ds.Tables["OrderDrink"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -110,16 +104,6 @@ namespace WindowsFormsApp1 {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public OrderDrinkDataTable OrderDrink {
-            get {
-                return this.tableOrderDrink;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public OptionDataTable Option {
             get {
                 return this.tableOption;
@@ -133,6 +117,16 @@ namespace WindowsFormsApp1 {
         public OrderDataTable Order {
             get {
                 return this.tableOrder;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public OrderDrinkDataTable OrderDrink {
+            get {
+                return this.tableOrderDrink;
             }
         }
         
@@ -206,14 +200,14 @@ namespace WindowsFormsApp1 {
                 if ((ds.Tables["Drink"] != null)) {
                     base.Tables.Add(new DrinkDataTable(ds.Tables["Drink"]));
                 }
-                if ((ds.Tables["OrderDrink"] != null)) {
-                    base.Tables.Add(new OrderDrinkDataTable(ds.Tables["OrderDrink"]));
-                }
                 if ((ds.Tables["Option"] != null)) {
                     base.Tables.Add(new OptionDataTable(ds.Tables["Option"]));
                 }
                 if ((ds.Tables["Order"] != null)) {
                     base.Tables.Add(new OrderDataTable(ds.Tables["Order"]));
+                }
+                if ((ds.Tables["OrderDrink"] != null)) {
+                    base.Tables.Add(new OrderDrinkDataTable(ds.Tables["OrderDrink"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -254,12 +248,6 @@ namespace WindowsFormsApp1 {
                     this.tableDrink.InitVars();
                 }
             }
-            this.tableOrderDrink = ((OrderDrinkDataTable)(base.Tables["OrderDrink"]));
-            if ((initTable == true)) {
-                if ((this.tableOrderDrink != null)) {
-                    this.tableOrderDrink.InitVars();
-                }
-            }
             this.tableOption = ((OptionDataTable)(base.Tables["Option"]));
             if ((initTable == true)) {
                 if ((this.tableOption != null)) {
@@ -272,9 +260,12 @@ namespace WindowsFormsApp1 {
                     this.tableOrder.InitVars();
                 }
             }
-            this.relationOption_OrderDrink = this.Relations["Option_OrderDrink"];
-            this.relationDrink_OrderDrink = this.Relations["Drink_OrderDrink"];
-            this.relationOrder_OrderDrink = this.Relations["Order_OrderDrink"];
+            this.tableOrderDrink = ((OrderDrinkDataTable)(base.Tables["OrderDrink"]));
+            if ((initTable == true)) {
+                if ((this.tableOrderDrink != null)) {
+                    this.tableOrderDrink.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -287,35 +278,39 @@ namespace WindowsFormsApp1 {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableDrink = new DrinkDataTable();
             base.Tables.Add(this.tableDrink);
-            this.tableOrderDrink = new OrderDrinkDataTable();
-            base.Tables.Add(this.tableOrderDrink);
             this.tableOption = new OptionDataTable();
             base.Tables.Add(this.tableOption);
             this.tableOrder = new OrderDataTable();
             base.Tables.Add(this.tableOrder);
-            this.relationOption_OrderDrink = new global::System.Data.DataRelation("Option_OrderDrink", new global::System.Data.DataColumn[] {
+            this.tableOrderDrink = new OrderDrinkDataTable();
+            base.Tables.Add(this.tableOrderDrink);
+            global::System.Data.ForeignKeyConstraint fkc;
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_Option_OrderDrink", new global::System.Data.DataColumn[] {
                         this.tableOption.OptionIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableOrderDrink.AddedOptionIDColumn}, false);
-            this.Relations.Add(this.relationOption_OrderDrink);
-            this.relationDrink_OrderDrink = new global::System.Data.DataRelation("Drink_OrderDrink", new global::System.Data.DataColumn[] {
-                        this.tableDrink.DrinkIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableOrderDrink.DrinkIDColumn}, false);
-            this.Relations.Add(this.relationDrink_OrderDrink);
-            this.relationOrder_OrderDrink = new global::System.Data.DataRelation("Order_OrderDrink", new global::System.Data.DataColumn[] {
+                        this.tableOrderDrink.AddedOptionIDColumn});
+            this.tableOrderDrink.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.None;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_Order_OrderDrink", new global::System.Data.DataColumn[] {
                         this.tableOrder.OrderIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableOrderDrink.OrderIDColumn}, false);
-            this.Relations.Add(this.relationOrder_OrderDrink);
+                        this.tableOrderDrink.OrderDrinkIDColumn});
+            this.tableOrderDrink.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.None;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_Drink_OrderDrink", new global::System.Data.DataColumn[] {
+                        this.tableDrink.DrinkIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableOrderDrink.DrinkIDColumn});
+            this.tableOrderDrink.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.None;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeDrink() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeOrderDrink() {
             return false;
         }
         
@@ -328,6 +323,12 @@ namespace WindowsFormsApp1 {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeOrder() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeOrderDrink() {
             return false;
         }
         
@@ -390,13 +391,13 @@ namespace WindowsFormsApp1 {
         public delegate void DrinkRowChangeEventHandler(object sender, DrinkRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void OrderDrinkRowChangeEventHandler(object sender, OrderDrinkRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void OptionRowChangeEventHandler(object sender, OptionRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void OrderRowChangeEventHandler(object sender, OrderRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void OrderDrinkRowChangeEventHandler(object sender, OrderDrinkRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -672,329 +673,6 @@ namespace WindowsFormsApp1 {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "DrinkDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class OrderDrinkDataTable : global::System.Data.TypedTableBase<OrderDrinkRow> {
-            
-            private global::System.Data.DataColumn columnOrderDrinkID;
-            
-            private global::System.Data.DataColumn columnResultPrice;
-            
-            private global::System.Data.DataColumn columnDrinkID;
-            
-            private global::System.Data.DataColumn columnOrderID;
-            
-            private global::System.Data.DataColumn columnAddedOptionID;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OrderDrinkDataTable() {
-                this.TableName = "OrderDrink";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal OrderDrinkDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected OrderDrinkDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn OrderDrinkIDColumn {
-                get {
-                    return this.columnOrderDrinkID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn ResultPriceColumn {
-                get {
-                    return this.columnResultPrice;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn DrinkIDColumn {
-                get {
-                    return this.columnDrinkID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn OrderIDColumn {
-                get {
-                    return this.columnOrderID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn AddedOptionIDColumn {
-                get {
-                    return this.columnAddedOptionID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OrderDrinkRow this[int index] {
-                get {
-                    return ((OrderDrinkRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event OrderDrinkRowChangeEventHandler OrderDrinkRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event OrderDrinkRowChangeEventHandler OrderDrinkRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event OrderDrinkRowChangeEventHandler OrderDrinkRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event OrderDrinkRowChangeEventHandler OrderDrinkRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddOrderDrinkRow(OrderDrinkRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OrderDrinkRow AddOrderDrinkRow(string OrderDrinkID, string ResultPrice, DrinkRow parentDrinkRowByDrink_OrderDrink, OrderRow parentOrderRowByOrder_OrderDrink, OptionRow parentOptionRowByOption_OrderDrink) {
-                OrderDrinkRow rowOrderDrinkRow = ((OrderDrinkRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        OrderDrinkID,
-                        ResultPrice,
-                        null,
-                        null,
-                        null};
-                if ((parentDrinkRowByDrink_OrderDrink != null)) {
-                    columnValuesArray[2] = parentDrinkRowByDrink_OrderDrink[0];
-                }
-                if ((parentOrderRowByOrder_OrderDrink != null)) {
-                    columnValuesArray[3] = parentOrderRowByOrder_OrderDrink[0];
-                }
-                if ((parentOptionRowByOption_OrderDrink != null)) {
-                    columnValuesArray[4] = parentOptionRowByOption_OrderDrink[0];
-                }
-                rowOrderDrinkRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowOrderDrinkRow);
-                return rowOrderDrinkRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OrderDrinkRow FindByOrderDrinkID(string OrderDrinkID) {
-                return ((OrderDrinkRow)(this.Rows.Find(new object[] {
-                            OrderDrinkID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                OrderDrinkDataTable cln = ((OrderDrinkDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new OrderDrinkDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal void InitVars() {
-                this.columnOrderDrinkID = base.Columns["OrderDrinkID"];
-                this.columnResultPrice = base.Columns["ResultPrice"];
-                this.columnDrinkID = base.Columns["DrinkID"];
-                this.columnOrderID = base.Columns["OrderID"];
-                this.columnAddedOptionID = base.Columns["AddedOptionID"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            private void InitClass() {
-                this.columnOrderDrinkID = new global::System.Data.DataColumn("OrderDrinkID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOrderDrinkID);
-                this.columnResultPrice = new global::System.Data.DataColumn("ResultPrice", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnResultPrice);
-                this.columnDrinkID = new global::System.Data.DataColumn("DrinkID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDrinkID);
-                this.columnOrderID = new global::System.Data.DataColumn("OrderID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOrderID);
-                this.columnAddedOptionID = new global::System.Data.DataColumn("AddedOptionID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAddedOptionID);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("OrderKey1", new global::System.Data.DataColumn[] {
-                                this.columnOrderDrinkID}, true));
-                this.columnOrderDrinkID.AllowDBNull = false;
-                this.columnOrderDrinkID.Unique = true;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OrderDrinkRow NewOrderDrinkRow() {
-                return ((OrderDrinkRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new OrderDrinkRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(OrderDrinkRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.OrderDrinkRowChanged != null)) {
-                    this.OrderDrinkRowChanged(this, new OrderDrinkRowChangeEvent(((OrderDrinkRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.OrderDrinkRowChanging != null)) {
-                    this.OrderDrinkRowChanging(this, new OrderDrinkRowChangeEvent(((OrderDrinkRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.OrderDrinkRowDeleted != null)) {
-                    this.OrderDrinkRowDeleted(this, new OrderDrinkRowChangeEvent(((OrderDrinkRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.OrderDrinkRowDeleting != null)) {
-                    this.OrderDrinkRowDeleting(this, new OrderDrinkRowChangeEvent(((OrderDrinkRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveOrderDrinkRow(OrderDrinkRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DataSet1 ds = new DataSet1();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "OrderDrinkDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1458,10 +1136,10 @@ namespace WindowsFormsApp1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OrderRow AddOrderRow(string OrderID, string Takeaway, string OrderTime, string TotalDrink, string OrderedDrink, string TotalPrice) {
+            public OrderRow AddOrderRow(string Takeaway, string OrderTime, string TotalDrink, string OrderedDrink, string TotalPrice) {
                 OrderRow rowOrderRow = ((OrderRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        OrderID,
+                        null,
                         Takeaway,
                         OrderTime,
                         TotalDrink,
@@ -1474,7 +1152,7 @@ namespace WindowsFormsApp1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OrderRow FindByOrderID(string OrderID) {
+            public OrderRow FindByOrderID(int OrderID) {
                 return ((OrderRow)(this.Rows.Find(new object[] {
                             OrderID})));
             }
@@ -1507,7 +1185,7 @@ namespace WindowsFormsApp1 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnOrderID = new global::System.Data.DataColumn("OrderID", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnOrderID = new global::System.Data.DataColumn("OrderID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOrderID);
                 this.columnTakeaway = new global::System.Data.DataColumn("Takeaway", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTakeaway);
@@ -1521,6 +1199,9 @@ namespace WindowsFormsApp1 {
                 base.Columns.Add(this.columnTotalPrice);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("OrderKey1", new global::System.Data.DataColumn[] {
                                 this.columnOrderID}, true));
+                this.columnOrderID.AutoIncrement = true;
+                this.columnOrderID.AutoIncrementSeed = -1;
+                this.columnOrderID.AutoIncrementStep = -1;
                 this.columnOrderID.AllowDBNull = false;
                 this.columnOrderID.Unique = true;
             }
@@ -1609,6 +1290,323 @@ namespace WindowsFormsApp1 {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "OrderDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class OrderDrinkDataTable : global::System.Data.TypedTableBase<OrderDrinkRow> {
+            
+            private global::System.Data.DataColumn columnOrderDrinkID;
+            
+            private global::System.Data.DataColumn columnResultPrice;
+            
+            private global::System.Data.DataColumn columnDrinkID;
+            
+            private global::System.Data.DataColumn columnOrderID;
+            
+            private global::System.Data.DataColumn columnAddedOptionID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public OrderDrinkDataTable() {
+                this.TableName = "OrderDrink";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal OrderDrinkDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected OrderDrinkDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn OrderDrinkIDColumn {
+                get {
+                    return this.columnOrderDrinkID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ResultPriceColumn {
+                get {
+                    return this.columnResultPrice;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DrinkIDColumn {
+                get {
+                    return this.columnDrinkID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn OrderIDColumn {
+                get {
+                    return this.columnOrderID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn AddedOptionIDColumn {
+                get {
+                    return this.columnAddedOptionID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public OrderDrinkRow this[int index] {
+                get {
+                    return ((OrderDrinkRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event OrderDrinkRowChangeEventHandler OrderDrinkRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event OrderDrinkRowChangeEventHandler OrderDrinkRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event OrderDrinkRowChangeEventHandler OrderDrinkRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event OrderDrinkRowChangeEventHandler OrderDrinkRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddOrderDrinkRow(OrderDrinkRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public OrderDrinkRow AddOrderDrinkRow(string ResultPrice, string DrinkID, string OrderID, string AddedOptionID) {
+                OrderDrinkRow rowOrderDrinkRow = ((OrderDrinkRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        ResultPrice,
+                        DrinkID,
+                        OrderID,
+                        AddedOptionID};
+                rowOrderDrinkRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowOrderDrinkRow);
+                return rowOrderDrinkRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public OrderDrinkRow FindByOrderDrinkID(int OrderDrinkID) {
+                return ((OrderDrinkRow)(this.Rows.Find(new object[] {
+                            OrderDrinkID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                OrderDrinkDataTable cln = ((OrderDrinkDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new OrderDrinkDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnOrderDrinkID = base.Columns["OrderDrinkID"];
+                this.columnResultPrice = base.Columns["ResultPrice"];
+                this.columnDrinkID = base.Columns["DrinkID"];
+                this.columnOrderID = base.Columns["OrderID"];
+                this.columnAddedOptionID = base.Columns["AddedOptionID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnOrderDrinkID = new global::System.Data.DataColumn("OrderDrinkID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOrderDrinkID);
+                this.columnResultPrice = new global::System.Data.DataColumn("ResultPrice", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnResultPrice);
+                this.columnDrinkID = new global::System.Data.DataColumn("DrinkID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDrinkID);
+                this.columnOrderID = new global::System.Data.DataColumn("OrderID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOrderID);
+                this.columnAddedOptionID = new global::System.Data.DataColumn("AddedOptionID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAddedOptionID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("OrderDrinkKey1", new global::System.Data.DataColumn[] {
+                                this.columnOrderDrinkID}, true));
+                this.columnOrderDrinkID.AutoIncrement = true;
+                this.columnOrderDrinkID.AutoIncrementSeed = -1;
+                this.columnOrderDrinkID.AutoIncrementStep = -1;
+                this.columnOrderDrinkID.AllowDBNull = false;
+                this.columnOrderDrinkID.Unique = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public OrderDrinkRow NewOrderDrinkRow() {
+                return ((OrderDrinkRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new OrderDrinkRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(OrderDrinkRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.OrderDrinkRowChanged != null)) {
+                    this.OrderDrinkRowChanged(this, new OrderDrinkRowChangeEvent(((OrderDrinkRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.OrderDrinkRowChanging != null)) {
+                    this.OrderDrinkRowChanging(this, new OrderDrinkRowChangeEvent(((OrderDrinkRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.OrderDrinkRowDeleted != null)) {
+                    this.OrderDrinkRowDeleted(this, new OrderDrinkRowChangeEvent(((OrderDrinkRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.OrderDrinkRowDeleting != null)) {
+                    this.OrderDrinkRowDeleting(this, new OrderDrinkRowChangeEvent(((OrderDrinkRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveOrderDrinkRow(OrderDrinkRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DataSet1 ds = new DataSet1();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "OrderDrinkDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1785,188 +1783,6 @@ namespace WindowsFormsApp1 {
             public void SetCategoryNull() {
                 this[this.tableDrink.CategoryColumn] = global::System.Convert.DBNull;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OrderDrinkRow[] GetOrderDrinkRows() {
-                if ((this.Table.ChildRelations["Drink_OrderDrink"] == null)) {
-                    return new OrderDrinkRow[0];
-                }
-                else {
-                    return ((OrderDrinkRow[])(base.GetChildRows(this.Table.ChildRelations["Drink_OrderDrink"])));
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class OrderDrinkRow : global::System.Data.DataRow {
-            
-            private OrderDrinkDataTable tableOrderDrink;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal OrderDrinkRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableOrderDrink = ((OrderDrinkDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string OrderDrinkID {
-                get {
-                    return ((string)(this[this.tableOrderDrink.OrderDrinkIDColumn]));
-                }
-                set {
-                    this[this.tableOrderDrink.OrderDrinkIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string ResultPrice {
-                get {
-                    try {
-                        return ((string)(this[this.tableOrderDrink.ResultPriceColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'OrderDrink\' 테이블의 \'ResultPrice\' 열의 값이 DBNull입니다.", e);
-                    }
-                }
-                set {
-                    this[this.tableOrderDrink.ResultPriceColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string DrinkID {
-                get {
-                    try {
-                        return ((string)(this[this.tableOrderDrink.DrinkIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'OrderDrink\' 테이블의 \'DrinkID\' 열의 값이 DBNull입니다.", e);
-                    }
-                }
-                set {
-                    this[this.tableOrderDrink.DrinkIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string OrderID {
-                get {
-                    try {
-                        return ((string)(this[this.tableOrderDrink.OrderIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'OrderDrink\' 테이블의 \'OrderID\' 열의 값이 DBNull입니다.", e);
-                    }
-                }
-                set {
-                    this[this.tableOrderDrink.OrderIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string AddedOptionID {
-                get {
-                    try {
-                        return ((string)(this[this.tableOrderDrink.AddedOptionIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("\'OrderDrink\' 테이블의 \'AddedOptionID\' 열의 값이 DBNull입니다.", e);
-                    }
-                }
-                set {
-                    this[this.tableOrderDrink.AddedOptionIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OptionRow OptionRow {
-                get {
-                    return ((OptionRow)(this.GetParentRow(this.Table.ParentRelations["Option_OrderDrink"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Option_OrderDrink"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public DrinkRow DrinkRow {
-                get {
-                    return ((DrinkRow)(this.GetParentRow(this.Table.ParentRelations["Drink_OrderDrink"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Drink_OrderDrink"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OrderRow OrderRow {
-                get {
-                    return ((OrderRow)(this.GetParentRow(this.Table.ParentRelations["Order_OrderDrink"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Order_OrderDrink"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsResultPriceNull() {
-                return this.IsNull(this.tableOrderDrink.ResultPriceColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetResultPriceNull() {
-                this[this.tableOrderDrink.ResultPriceColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsDrinkIDNull() {
-                return this.IsNull(this.tableOrderDrink.DrinkIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetDrinkIDNull() {
-                this[this.tableOrderDrink.DrinkIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsOrderIDNull() {
-                return this.IsNull(this.tableOrderDrink.OrderIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetOrderIDNull() {
-                this[this.tableOrderDrink.OrderIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsAddedOptionIDNull() {
-                return this.IsNull(this.tableOrderDrink.AddedOptionIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetAddedOptionIDNull() {
-                this[this.tableOrderDrink.AddedOptionIDColumn] = global::System.Convert.DBNull;
-            }
         }
         
         /// <summary>
@@ -2049,17 +1865,6 @@ namespace WindowsFormsApp1 {
             public void SetOptionPriceNull() {
                 this[this.tableOption.OptionPriceColumn] = global::System.Convert.DBNull;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OrderDrinkRow[] GetOrderDrinkRows() {
-                if ((this.Table.ChildRelations["Option_OrderDrink"] == null)) {
-                    return new OrderDrinkRow[0];
-                }
-                else {
-                    return ((OrderDrinkRow[])(base.GetChildRows(this.Table.ChildRelations["Option_OrderDrink"])));
-                }
-            }
         }
         
         /// <summary>
@@ -2078,9 +1883,9 @@ namespace WindowsFormsApp1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string OrderID {
+            public int OrderID {
                 get {
-                    return ((string)(this[this.tableOrder.OrderIDColumn]));
+                    return ((int)(this[this.tableOrder.OrderIDColumn]));
                 }
                 set {
                     this[this.tableOrder.OrderIDColumn] = value;
@@ -2226,16 +2031,143 @@ namespace WindowsFormsApp1 {
             public void SetTotalPriceNull() {
                 this[this.tableOrder.TotalPriceColumn] = global::System.Convert.DBNull;
             }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class OrderDrinkRow : global::System.Data.DataRow {
+            
+            private OrderDrinkDataTable tableOrderDrink;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OrderDrinkRow[] GetOrderDrinkRows() {
-                if ((this.Table.ChildRelations["Order_OrderDrink"] == null)) {
-                    return new OrderDrinkRow[0];
+            internal OrderDrinkRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableOrderDrink = ((OrderDrinkDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int OrderDrinkID {
+                get {
+                    return ((int)(this[this.tableOrderDrink.OrderDrinkIDColumn]));
                 }
-                else {
-                    return ((OrderDrinkRow[])(base.GetChildRows(this.Table.ChildRelations["Order_OrderDrink"])));
+                set {
+                    this[this.tableOrderDrink.OrderDrinkIDColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string ResultPrice {
+                get {
+                    try {
+                        return ((string)(this[this.tableOrderDrink.ResultPriceColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'OrderDrink\' 테이블의 \'ResultPrice\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrderDrink.ResultPriceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string DrinkID {
+                get {
+                    try {
+                        return ((string)(this[this.tableOrderDrink.DrinkIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'OrderDrink\' 테이블의 \'DrinkID\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrderDrink.DrinkIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string OrderID {
+                get {
+                    try {
+                        return ((string)(this[this.tableOrderDrink.OrderIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'OrderDrink\' 테이블의 \'OrderID\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrderDrink.OrderIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string AddedOptionID {
+                get {
+                    try {
+                        return ((string)(this[this.tableOrderDrink.AddedOptionIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'OrderDrink\' 테이블의 \'AddedOptionID\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrderDrink.AddedOptionIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsResultPriceNull() {
+                return this.IsNull(this.tableOrderDrink.ResultPriceColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetResultPriceNull() {
+                this[this.tableOrderDrink.ResultPriceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsDrinkIDNull() {
+                return this.IsNull(this.tableOrderDrink.DrinkIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetDrinkIDNull() {
+                this[this.tableOrderDrink.DrinkIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsOrderIDNull() {
+                return this.IsNull(this.tableOrderDrink.OrderIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetOrderIDNull() {
+                this[this.tableOrderDrink.OrderIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsAddedOptionIDNull() {
+                return this.IsNull(this.tableOrderDrink.AddedOptionIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetAddedOptionIDNull() {
+                this[this.tableOrderDrink.AddedOptionIDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2259,40 +2191,6 @@ namespace WindowsFormsApp1 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public DrinkRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class OrderDrinkRowChangeEvent : global::System.EventArgs {
-            
-            private OrderDrinkRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OrderDrinkRowChangeEvent(OrderDrinkRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OrderDrinkRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -2361,6 +2259,40 @@ namespace WindowsFormsApp1 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public OrderRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class OrderDrinkRowChangeEvent : global::System.EventArgs {
+            
+            private OrderDrinkRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public OrderDrinkRowChangeEvent(OrderDrinkRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public OrderDrinkRow Row {
                 get {
                     return this.eventRow;
                 }

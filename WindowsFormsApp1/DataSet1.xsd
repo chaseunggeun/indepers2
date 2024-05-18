@@ -9,27 +9,37 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DataSet1" msprop:Generator_DataSetName="DataSet1">
+  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DataSet1" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Drink" msprop:Generator_RowEvHandlerName="DrinkRowChangeEventHandler" msprop:Generator_RowDeletedName="DrinkRowDeleted" msprop:Generator_RowDeletingName="DrinkRowDeleting" msprop:Generator_RowEvArgName="DrinkRowChangeEvent" msprop:Generator_TablePropName="Drink" msprop:Generator_RowChangedName="DrinkRowChanged" msprop:Generator_RowChangingName="DrinkRowChanging" msprop:Generator_TableClassName="DrinkDataTable" msprop:Generator_RowClassName="DrinkRow" msprop:Generator_TableVarName="tableDrink" msprop:Generator_UserTableName="Drink">
+        <xs:element name="Drink" msprop:Generator_RowClassName="DrinkRow" msprop:Generator_RowEvHandlerName="DrinkRowChangeEventHandler" msprop:Generator_RowDeletedName="DrinkRowDeleted" msprop:Generator_RowDeletingName="DrinkRowDeleting" msprop:Generator_RowEvArgName="DrinkRowChangeEvent" msprop:Generator_TablePropName="Drink" msprop:Generator_RowChangedName="DrinkRowChanged" msprop:Generator_UserTableName="Drink" msprop:Generator_RowChangingName="DrinkRowChanging" msprop:Generator_TableClassName="DrinkDataTable" msprop:Generator_TableVarName="tableDrink">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="DrinkID" msprop:Generator_ColumnPropNameInRow="DrinkID" msprop:Generator_ColumnPropNameInTable="DrinkIDColumn" msprop:Generator_ColumnVarNameInTable="columnDrinkID" msprop:Generator_UserColumnName="DrinkID" type="xs:string" />
-              <xs:element name="DrinkName" msprop:Generator_ColumnPropNameInRow="DrinkName" msprop:Generator_ColumnPropNameInTable="DrinkNameColumn" msprop:Generator_ColumnVarNameInTable="columnDrinkName" msprop:Generator_UserColumnName="DrinkName" type="xs:string" minOccurs="0" />
-              <xs:element name="Price" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_UserColumnName="Price" type="xs:string" minOccurs="0" />
-              <xs:element name="StockQuantity" msprop:Generator_ColumnPropNameInRow="StockQuantity" msprop:Generator_ColumnPropNameInTable="StockQuantityColumn" msprop:Generator_ColumnVarNameInTable="columnStockQuantity" msprop:Generator_UserColumnName="StockQuantity" type="xs:string" minOccurs="0" />
-              <xs:element name="Category" msprop:Generator_ColumnPropNameInRow="Category" msprop:Generator_ColumnPropNameInTable="CategoryColumn" msprop:Generator_ColumnVarNameInTable="columnCategory" msprop:Generator_UserColumnName="Category" type="xs:string" minOccurs="0" />
+              <xs:element name="DrinkID" msprop:Generator_UserColumnName="DrinkID" msprop:Generator_ColumnPropNameInTable="DrinkIDColumn" msprop:Generator_ColumnPropNameInRow="DrinkID" msprop:Generator_ColumnVarNameInTable="columnDrinkID" type="xs:string" />
+              <xs:element name="DrinkName" msprop:Generator_UserColumnName="DrinkName" msprop:Generator_ColumnPropNameInTable="DrinkNameColumn" msprop:Generator_ColumnPropNameInRow="DrinkName" msprop:Generator_ColumnVarNameInTable="columnDrinkName" type="xs:string" minOccurs="0" />
+              <xs:element name="Price" msprop:Generator_UserColumnName="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" type="xs:string" minOccurs="0" />
+              <xs:element name="Stock" msprop:Generator_UserColumnName="Stock" msprop:Generator_ColumnPropNameInTable="StockColumn" msprop:Generator_ColumnPropNameInRow="Stock" msprop:Generator_ColumnVarNameInTable="columnStock" type="xs:string" minOccurs="0" />
+              <xs:element name="Category" msprop:Generator_UserColumnName="Category" msprop:Generator_ColumnPropNameInTable="CategoryColumn" msprop:Generator_ColumnPropNameInRow="Category" msprop:Generator_ColumnVarNameInTable="columnCategory" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="OrderDetail" msprop:Generator_RowEvHandlerName="OrderDetailRowChangeEventHandler" msprop:Generator_RowDeletedName="OrderDetailRowDeleted" msprop:Generator_RowDeletingName="OrderDetailRowDeleting" msprop:Generator_RowEvArgName="OrderDetailRowChangeEvent" msprop:Generator_TablePropName="OrderDetail" msprop:Generator_RowChangedName="OrderDetailRowChanged" msprop:Generator_RowChangingName="OrderDetailRowChanging" msprop:Generator_TableClassName="OrderDetailDataTable" msprop:Generator_RowClassName="OrderDetailRow" msprop:Generator_TableVarName="tableOrderDetail" msprop:Generator_UserTableName="OrderDetail">
+        <xs:element name="OrderDrink" msprop:Generator_RowClassName="OrderDrinkRow" msprop:Generator_RowEvHandlerName="OrderDrinkRowChangeEventHandler" msprop:Generator_RowDeletedName="OrderDrinkRowDeleted" msprop:Generator_RowDeletingName="OrderDrinkRowDeleting" msprop:Generator_RowEvArgName="OrderDrinkRowChangeEvent" msprop:Generator_TablePropName="OrderDrink" msprop:Generator_RowChangedName="OrderDrinkRowChanged" msprop:Generator_UserTableName="OrderDrink" msprop:Generator_RowChangingName="OrderDrinkRowChanging" msprop:Generator_TableClassName="OrderDrinkDataTable" msprop:Generator_TableVarName="tableOrderDrink">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="OrderDetailID" msprop:Generator_ColumnPropNameInRow="OrderDetailID" msprop:Generator_ColumnPropNameInTable="OrderDetailIDColumn" msprop:Generator_ColumnVarNameInTable="columnOrderDetailID" msprop:Generator_UserColumnName="OrderDetailID" type="xs:string" />
-              <xs:element name="Quantity" msprop:Generator_ColumnPropNameInRow="Quantity" msprop:Generator_ColumnPropNameInTable="QuantityColumn" msprop:Generator_ColumnVarNameInTable="columnQuantity" msprop:Generator_UserColumnName="Quantity" type="xs:string" minOccurs="0" />
-              <xs:element name="DrinkID" msprop:Generator_ColumnPropNameInRow="DrinkID" msprop:Generator_ColumnPropNameInTable="DrinkIDColumn" msprop:Generator_ColumnVarNameInTable="columnDrinkID" msprop:Generator_UserColumnName="DrinkID" type="xs:string" minOccurs="0" />
+              <xs:element name="OrderDrinkID" msprop:Generator_UserColumnName="OrderDrinkID" msprop:Generator_ColumnPropNameInTable="OrderDrinkIDColumn" msprop:Generator_ColumnPropNameInRow="OrderDrinkID" msprop:Generator_ColumnVarNameInTable="columnOrderDrinkID" type="xs:string" />
+              <xs:element name="ResultPrice" msprop:Generator_UserColumnName="ResultPrice" msprop:Generator_ColumnPropNameInTable="ResultPriceColumn" msprop:Generator_ColumnPropNameInRow="ResultPrice" msprop:Generator_ColumnVarNameInTable="columnResultPrice" type="xs:string" minOccurs="0" />
+              <xs:element name="DrinkID" msprop:Generator_UserColumnName="DrinkID" msprop:Generator_ColumnPropNameInTable="DrinkIDColumn" msprop:Generator_ColumnPropNameInRow="DrinkID" msprop:Generator_ColumnVarNameInTable="columnDrinkID" type="xs:string" minOccurs="0" />
               <xs:element name="OrderID" msprop:Generator_ColumnPropNameInRow="OrderID" msprop:Generator_ColumnPropNameInTable="OrderIDColumn" msprop:Generator_ColumnVarNameInTable="columnOrderID" msprop:Generator_UserColumnName="OrderID" type="xs:string" minOccurs="0" />
+              <xs:element name="AddedOptionID" msprop:Generator_ColumnPropNameInRow="AddedOptionID" msprop:Generator_ColumnPropNameInTable="AddedOptionIDColumn" msprop:Generator_ColumnVarNameInTable="columnAddedOptionID" msprop:Generator_UserColumnName="AddedOptionID" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Option" msprop:Generator_RowClassName="OptionRow" msprop:Generator_RowEvHandlerName="OptionRowChangeEventHandler" msprop:Generator_RowDeletedName="OptionRowDeleted" msprop:Generator_RowDeletingName="OptionRowDeleting" msprop:Generator_RowEvArgName="OptionRowChangeEvent" msprop:Generator_TablePropName="Option" msprop:Generator_RowChangedName="OptionRowChanged" msprop:Generator_UserTableName="Option" msprop:Generator_RowChangingName="OptionRowChanging" msprop:Generator_TableClassName="OptionDataTable" msprop:Generator_TableVarName="tableOption">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OptionID" msprop:Generator_UserColumnName="OptionID" msprop:Generator_ColumnPropNameInTable="OptionIDColumn" msprop:Generator_ColumnPropNameInRow="OptionID" msprop:Generator_ColumnVarNameInTable="columnOptionID" type="xs:string" />
+              <xs:element name="OptionName" msprop:Generator_UserColumnName="OptionName" msprop:Generator_ColumnPropNameInTable="OptionNameColumn" msprop:Generator_ColumnPropNameInRow="OptionName" msprop:Generator_ColumnVarNameInTable="columnOptionName" type="xs:string" minOccurs="0" />
+              <xs:element name="OptionPrice" msprop:Generator_UserColumnName="OptionPrice" msprop:Generator_ColumnPropNameInTable="OptionPriceColumn" msprop:Generator_ColumnPropNameInRow="OptionPrice" msprop:Generator_ColumnVarNameInTable="columnOptionPrice" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -37,28 +47,11 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="OrderID" msprop:Generator_ColumnPropNameInRow="OrderID" msprop:Generator_ColumnPropNameInTable="OrderIDColumn" msprop:Generator_ColumnVarNameInTable="columnOrderID" msprop:Generator_UserColumnName="OrderID" type="xs:string" />
+              <xs:element name="Takeaway" msprop:Generator_ColumnPropNameInRow="Takeaway" msprop:Generator_ColumnPropNameInTable="TakeawayColumn" msprop:Generator_ColumnVarNameInTable="columnTakeaway" msprop:Generator_UserColumnName="Takeaway" type="xs:string" minOccurs="0" />
               <xs:element name="OrderTime" msprop:Generator_ColumnPropNameInRow="OrderTime" msprop:Generator_ColumnPropNameInTable="OrderTimeColumn" msprop:Generator_ColumnVarNameInTable="columnOrderTime" msprop:Generator_UserColumnName="OrderTime" type="xs:string" minOccurs="0" />
-              <xs:element name="IsComplete" msprop:Generator_ColumnPropNameInRow="IsComplete" msprop:Generator_ColumnPropNameInTable="IsCompleteColumn" msprop:Generator_ColumnVarNameInTable="columnIsComplete" msprop:Generator_UserColumnName="IsComplete" type="xs:string" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="Option" msprop:Generator_RowEvHandlerName="OptionRowChangeEventHandler" msprop:Generator_RowDeletedName="OptionRowDeleted" msprop:Generator_RowDeletingName="OptionRowDeleting" msprop:Generator_RowEvArgName="OptionRowChangeEvent" msprop:Generator_TablePropName="Option" msprop:Generator_RowChangedName="OptionRowChanged" msprop:Generator_RowChangingName="OptionRowChanging" msprop:Generator_TableClassName="OptionDataTable" msprop:Generator_RowClassName="OptionRow" msprop:Generator_TableVarName="tableOption" msprop:Generator_UserTableName="Option">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="OptionID" msprop:Generator_ColumnPropNameInRow="OptionID" msprop:Generator_ColumnPropNameInTable="OptionIDColumn" msprop:Generator_ColumnVarNameInTable="columnOptionID" msprop:Generator_UserColumnName="OptionID" type="xs:string" />
-              <xs:element name="IsCold" msprop:Generator_ColumnPropNameInRow="IsCold" msprop:Generator_ColumnPropNameInTable="IsColdColumn" msprop:Generator_ColumnVarNameInTable="columnIsCold" msprop:Generator_UserColumnName="IsCold" type="xs:string" minOccurs="0" />
-              <xs:element name="Price" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_UserColumnName="Price" type="xs:string" minOccurs="0" />
-              <xs:element name="IceQunatity" msprop:Generator_ColumnPropNameInRow="IceQunatity" msprop:Generator_ColumnPropNameInTable="IceQunatityColumn" msprop:Generator_ColumnVarNameInTable="columnIceQunatity" msprop:Generator_UserColumnName="IceQunatity" type="xs:string" minOccurs="0" />
-              <xs:element name="Caffeine" msprop:Generator_ColumnPropNameInRow="Caffeine" msprop:Generator_ColumnPropNameInTable="CaffeineColumn" msprop:Generator_ColumnVarNameInTable="columnCaffeine" msprop:Generator_UserColumnName="Caffeine" type="xs:string" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="OrderDetailOption" msprop:Generator_RowEvHandlerName="OrderDetailOptionRowChangeEventHandler" msprop:Generator_RowDeletedName="OrderDetailOptionRowDeleted" msprop:Generator_RowDeletingName="OrderDetailOptionRowDeleting" msprop:Generator_RowEvArgName="OrderDetailOptionRowChangeEvent" msprop:Generator_TablePropName="OrderDetailOption" msprop:Generator_RowChangedName="OrderDetailOptionRowChanged" msprop:Generator_RowChangingName="OrderDetailOptionRowChanging" msprop:Generator_TableClassName="OrderDetailOptionDataTable" msprop:Generator_RowClassName="OrderDetailOptionRow" msprop:Generator_TableVarName="tableOrderDetailOption" msprop:Generator_UserTableName="OrderDetailOption">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="OrderDetailOptionID" msprop:Generator_ColumnPropNameInRow="OrderDetailOptionID" msprop:Generator_ColumnPropNameInTable="OrderDetailOptionIDColumn" msprop:Generator_ColumnVarNameInTable="columnOrderDetailOptionID" msprop:Generator_UserColumnName="OrderDetailOptionID" type="xs:string" />
-              <xs:element name="OptionID" msprop:Generator_ColumnPropNameInRow="OptionID" msprop:Generator_ColumnPropNameInTable="OptionIDColumn" msprop:Generator_ColumnVarNameInTable="columnOptionID" msprop:Generator_UserColumnName="OptionID" type="xs:string" minOccurs="0" />
-              <xs:element name="OrderDetailID" msprop:Generator_ColumnPropNameInRow="OrderDetailID" msprop:Generator_ColumnPropNameInTable="OrderDetailIDColumn" msprop:Generator_ColumnVarNameInTable="columnOrderDetailID" msprop:Generator_UserColumnName="OrderDetailID" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalDrink" msprop:Generator_ColumnPropNameInRow="TotalDrink" msprop:Generator_ColumnPropNameInTable="TotalDrinkColumn" msprop:Generator_ColumnVarNameInTable="columnTotalDrink" msprop:Generator_UserColumnName="TotalDrink" type="xs:string" minOccurs="0" />
+              <xs:element name="OrderedDrink" msprop:Generator_ColumnPropNameInRow="OrderedDrink" msprop:Generator_ColumnPropNameInTable="OrderedDrinkColumn" msprop:Generator_ColumnVarNameInTable="columnOrderedDrink" msprop:Generator_UserColumnName="OrderedDrink" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalPrice" msprop:Generator_ColumnPropNameInRow="TotalPrice" msprop:Generator_ColumnPropNameInTable="TotalPriceColumn" msprop:Generator_ColumnVarNameInTable="columnTotalPrice" msprop:Generator_UserColumnName="TotalPrice" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -68,37 +61,24 @@
       <xs:selector xpath=".//mstns:Drink" />
       <xs:field xpath="mstns:DrinkID" />
     </xs:unique>
-    <xs:unique name="OrderDetailKey1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:OrderDetail" />
-      <xs:field xpath="mstns:OrderDetailID" />
-    </xs:unique>
     <xs:unique name="OrderKey1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:Order" />
-      <xs:field xpath="mstns:OrderID" />
+      <xs:selector xpath=".//mstns:OrderDrink" />
+      <xs:field xpath="mstns:OrderDrinkID" />
     </xs:unique>
     <xs:unique name="OptionKey1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Option" />
       <xs:field xpath="mstns:OptionID" />
     </xs:unique>
-    <xs:unique name="OrderDetailOptionKey1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:OrderDetailOption" />
-      <xs:field xpath="mstns:OrderDetailOptionID" />
-    </xs:unique>
-    <xs:keyref name="FK_Option_OrderDetailOption" refer="OptionKey1" msprop:rel_Generator_UserParentTable="Option" msprop:rel_Generator_UserChildTable="OrderDetailOption" msprop:rel_Generator_RelationVarName="relationFK_Option_OrderDetailOption" msprop:rel_Generator_ChildPropName="GetOrderDetailOptionRows" msprop:rel_Generator_ParentPropName="OptionRow" msprop:rel_Generator_UserRelationName="FK_Option_OrderDetailOption">
-      <xs:selector xpath=".//mstns:OrderDetailOption" />
-      <xs:field xpath="mstns:OptionID" />
-    </xs:keyref>
-    <xs:keyref name="FK_OrderDetail_OrderDetailOption" refer="OrderDetailKey1" msprop:rel_Generator_UserParentTable="OrderDetail" msprop:rel_Generator_UserChildTable="OrderDetailOption" msprop:rel_Generator_RelationVarName="relationFK_OrderDetail_OrderDetailOption" msprop:rel_Generator_ChildPropName="GetOrderDetailOptionRows" msprop:rel_Generator_ParentPropName="OrderDetailRow" msprop:rel_Generator_UserRelationName="FK_OrderDetail_OrderDetailOption">
-      <xs:selector xpath=".//mstns:OrderDetailOption" />
-      <xs:field xpath="mstns:OrderDetailID" />
-    </xs:keyref>
-    <xs:keyref name="FK_Order_OrderDetail" refer="OrderKey1" msprop:rel_Generator_UserParentTable="Order" msprop:rel_Generator_UserChildTable="OrderDetail" msprop:rel_Generator_RelationVarName="relationFK_Order_OrderDetail" msprop:rel_Generator_UserRelationName="FK_Order_OrderDetail" msprop:rel_Generator_ChildPropName="GetOrderDetailRows" msprop:rel_Generator_ParentPropName="OrderRow">
-      <xs:selector xpath=".//mstns:OrderDetail" />
+    <xs:unique name="Order_OrderKey1" msdata:ConstraintName="OrderKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Order" />
       <xs:field xpath="mstns:OrderID" />
-    </xs:keyref>
-    <xs:keyref name="FK_Drink_OrderDetail" refer="DrinkKey1" msprop:rel_Generator_UserParentTable="Drink" msprop:rel_Generator_UserChildTable="OrderDetail" msprop:rel_Generator_RelationVarName="relationFK_Drink_OrderDetail" msprop:rel_Generator_ChildPropName="GetOrderDetailRows" msprop:rel_Generator_ParentPropName="DrinkRow" msprop:rel_Generator_UserRelationName="FK_Drink_OrderDetail">
-      <xs:selector xpath=".//mstns:OrderDetail" />
-      <xs:field xpath="mstns:DrinkID" />
-    </xs:keyref>
+    </xs:unique>
   </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="Option_OrderDrink" msdata:parent="Option" msdata:child="OrderDrink" msdata:parentkey="OptionID" msdata:childkey="AddedOptionID" msprop:Generator_UserParentTable="Option" msprop:Generator_UserChildTable="OrderDrink" msprop:Generator_RelationVarName="relationOption_OrderDrink" msprop:Generator_UserRelationName="Option_OrderDrink" msprop:Generator_ChildPropName="GetOrderDrinkRows" msprop:Generator_ParentPropName="OptionRow" />
+      <msdata:Relationship name="Drink_OrderDrink" msdata:parent="Drink" msdata:child="OrderDrink" msdata:parentkey="DrinkID" msdata:childkey="DrinkID" msprop:Generator_UserParentTable="Drink" msprop:Generator_UserChildTable="OrderDrink" msprop:Generator_RelationVarName="relationDrink_OrderDrink" msprop:Generator_ChildPropName="GetOrderDrinkRows" msprop:Generator_ParentPropName="DrinkRow" msprop:Generator_UserRelationName="Drink_OrderDrink" />
+      <msdata:Relationship name="Order_OrderDrink" msdata:parent="Order" msdata:child="OrderDrink" msdata:parentkey="OrderID" msdata:childkey="OrderID" msprop:Generator_UserParentTable="Order" msprop:Generator_UserChildTable="OrderDrink" msprop:Generator_RelationVarName="relationOrder_OrderDrink" msprop:Generator_UserRelationName="Order_OrderDrink" msprop:Generator_ChildPropName="GetOrderDrinkRows" msprop:Generator_ParentPropName="OrderRow" />
+    </xs:appinfo>
+  </xs:annotation>
 </xs:schema>
