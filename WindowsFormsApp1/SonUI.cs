@@ -115,5 +115,11 @@ namespace WindowsFormsApp1
         {
             shoppingCart = new ShoppingCart();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            shoppingCart.items.Clear();
+            grid.Rows.Clear();
+        }
     }
 }

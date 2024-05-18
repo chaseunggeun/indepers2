@@ -507,13 +507,13 @@
             this.bunifuLabel3.BackColor = System.Drawing.Color.White;
             this.bunifuLabel3.Cursor = System.Windows.Forms.Cursors.Default;
             this.bunifuLabel3.CursorType = System.Windows.Forms.Cursors.Default;
-            this.bunifuLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold);
             this.bunifuLabel3.ForeColor = System.Drawing.Color.Black;
             this.bunifuLabel3.Location = new System.Drawing.Point(3, 4);
             this.bunifuLabel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bunifuLabel3.Name = "bunifuLabel3";
             this.bunifuLabel3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.bunifuLabel3.Size = new System.Drawing.Size(81, 39);
+            this.bunifuLabel3.Size = new System.Drawing.Size(66, 31);
             this.bunifuLabel3.TabIndex = 4;
             this.bunifuLabel3.Text = "Total";
             this.bunifuLabel3.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
@@ -527,13 +527,13 @@
             this.lblTot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.lblTot.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblTot.CursorType = System.Windows.Forms.Cursors.Default;
-            this.lblTot.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTot.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
             this.lblTot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(103)))), ((int)(((byte)(0)))));
             this.lblTot.Location = new System.Drawing.Point(276, 58);
             this.lblTot.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblTot.Name = "lblTot";
             this.lblTot.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblTot.Size = new System.Drawing.Size(62, 29);
+            this.lblTot.Size = new System.Drawing.Size(45, 20);
             this.lblTot.TabIndex = 4;
             this.lblTot.Text = "0 krw";
             this.lblTot.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
@@ -552,6 +552,7 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "Clear All";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // bunifuLabel1
             // 
@@ -560,13 +561,13 @@
             this.bunifuLabel1.BackColor = System.Drawing.Color.White;
             this.bunifuLabel1.Cursor = System.Windows.Forms.Cursors.Default;
             this.bunifuLabel1.CursorType = System.Windows.Forms.Cursors.Default;
-            this.bunifuLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold);
             this.bunifuLabel1.ForeColor = System.Drawing.Color.Black;
             this.bunifuLabel1.Location = new System.Drawing.Point(0, 4);
             this.bunifuLabel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bunifuLabel1.Name = "bunifuLabel1";
             this.bunifuLabel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.bunifuLabel1.Size = new System.Drawing.Size(221, 39);
+            this.bunifuLabel1.Size = new System.Drawing.Size(180, 31);
             this.bunifuLabel1.TabIndex = 3;
             this.bunifuLabel1.Text = "Current Order";
             this.bunifuLabel1.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
