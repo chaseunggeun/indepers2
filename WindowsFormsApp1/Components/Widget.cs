@@ -14,6 +14,7 @@ namespace WindowsFormsApp1.Components
     public enum categories { Coffee, nonCoffee, Dessert}
     public partial class Widget : UserControl
     {
+
         private categories _category;
         public double _cost;
 
