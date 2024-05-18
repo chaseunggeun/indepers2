@@ -120,8 +120,8 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="bunifuPanel1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAANwAAARgCAYAAACCHTicAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAABN5SURBVHhe7dWxTQRBEEXBDYVQiIBEsXEJ5RLAIoE9Fngh
+        iVBORw0KGgoAAAANSUhEUgAAANwAAAQqCAYAAAAs3hGWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAABKNSURBVHhe7dWxTQRBEEXBDYVQiIBEsXEJ5RLAIoE9Fngh
         3H2rShq11G0/zQGM3e/3l/M8368JPNjV1sc1XsrtOK7F5/8JeIarsVu5/f1wwJOVm+BgodwEBwvlJjhY
         KDfBwUK5CQ4Wyk1wsFBugoOFchMcLJSb4GCh3AQHC+UmOFgoN8HBQrkJDhbKTXCwUG6Cg4VyExwslJvg
         YKHcBAcL5SY4WCg3wcFCuQkOFspNcLBQboKDhXITHCyUm+BgodwEBwvlJjhYKDfBwUK5CQ4Wyk1wsFBu
@@ -200,11 +200,7 @@
         C+UmOFgoN8HBQrkJDhbKTXCwUG6Cg4VyExwslJvgYKHcBAcL5SY4WCg3wcFCuQkOFspNcLBQboKDhXIT
         HCyUm+BgodwEBwvlJjhYKDfBwUK5CQ4Wyk1wsFBugoOFchMcLJSb4GCh3AQHC+UmOFgoN8HBQrkJDhbK
         TXCwUG6Cg4VyExwslJvgYKHcBAcL5SY4WCg3wcFCuQkOFspNcLBQboKDhXITHCyUm+BgodwEBwvlJjhY
-        KDfBwUK5CQ4Wyk1wsFBugoOFchMcLJSb4GCh3AQHC+UmOFgoN8HBQrkJDhbKTXCwUG6Cg4VyExwslJvg
-        YKHcBAcL5SY4WCg3wcFCuQkOFspNcLBQboKDhXITHCyUm+BgodwEBwvlJjhYKDfBwUK5CQ4Wyk1wsFBu
-        goOFchMcLJSb4GCh3AQHC+UmOFgoN8HBQrkJDhbKTXCwUG6Cg4VyExwslJvgYKHcBAcL5SY4WCg3wcFC
-        uQkOFspNcLBQboKDhXITHCyUm+BgodwEBwvlJjhYKDfBwUK5CQ4Wyk1wsFBugoOFchMcLJSb4GCh3I7j
-        PM9bO+AJrsa+y+3vh3u9Fl//J+CRfmO73lu5ARvH8QOO6ymFtzh1+gAAAABJRU5ErkJggg==
+        KLfjOM/z1g54gqux73L7++Fer8XX/wl4pN/YrvdWbsDGcfwAI/TmraA9gZIAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="bunifuButton3.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -4945,7 +4941,7 @@
     <value>106, 17</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>26</value>
+    <value>60</value>
   </metadata>
   <data name="txtSearch.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
