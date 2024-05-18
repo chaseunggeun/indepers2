@@ -44,12 +44,12 @@ namespace WindowsFormsApp1
                     if (item.Cells[0].Value.ToString() == wdg.lblTitle.Text)
                     {
                         item.Cells[1].Value = int.Parse(item.Cells[1].Value.ToString()) + 1 ;
-                        item.Cells[2].Value = (int.Parse(item.Cells[1].Value.ToString()) * double.Parse(item.Cells[2].Value.ToString().Replace("krw", ""))).ToString("C2"); 
+                        item.Cells[2].Value = (int.Parse(item.Cells[1].Value.ToString()) * int.Parse(item.Cells[2].Value.ToString())); 
                         CalculateTotal();
                         return;
                     }
                 }
-                grid.Rows.Add(new object[] { wdg.lblTitle.Text, 1, wdg._cost.ToString() });
+                grid.Rows.Add(new object[] { wdg.lblTitle.Text, 1, wdg.Cost });
                 CalculateTotal();
             };
         }
@@ -60,7 +60,7 @@ namespace WindowsFormsApp1
             foreach (DataGridViewRow item in grid.Rows)
             {
                 
-                tot += double.Parse(item.Cells[2].Value.ToString());
+                tot += int.Parse(item.Cells[2].Value.ToString().Replace(",", "").Replace("krw", ""));
             }
             lblTot.Text = tot.ToString("C2");
         }
