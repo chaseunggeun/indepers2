@@ -118,6 +118,7 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            lblTot.Text = "0 krw";
             shoppingCart.items.Clear();
             grid.Rows.Clear();
         }
