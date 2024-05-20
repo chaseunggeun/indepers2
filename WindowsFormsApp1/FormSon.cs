@@ -63,11 +63,9 @@ namespace WindowsFormsApp1
 
         private void btn_damgi_Click(object sender, EventArgs e)
         {
-            bool isDessert;
-            if (txt_bvgIsDessert.Text == "0")  isDessert = false;
-            else isDessert = true;
+            
             int[] option = { };
-            Beverage beverage = new Beverage(int.Parse(txt_bvgprice.Text), txt_bvgname.Text, txt_bvgCategory.Text, isDessert, option);
+            Beverage beverage = new Beverage(int.Parse(txt_bvgprice.Text), txt_bvgname.Text, txt_bvgCategory.Text, option, false);
             shoppingCart.AddItem(beverage);
             RefreshShoppingCart();
         }
@@ -77,7 +75,6 @@ namespace WindowsFormsApp1
             lvw_shoppingcart.Columns.Add("name", "Name");
             lvw_shoppingcart.Columns.Add("price", "Price");
             lvw_shoppingcart.Columns.Add("category", "Category");
-            lvw_shoppingcart.Columns.Add("isDessert", "IsDessert");
             lvw_shoppingcart.Columns.Add("option", "Option");
         }
 
@@ -95,7 +92,6 @@ namespace WindowsFormsApp1
                 ListViewItem bvgItem = new ListViewItem(item.getName());
                 bvgItem.SubItems.Add(item.getPrice().ToString());
                 bvgItem.SubItems.Add(item.getCategory().ToString());
-                bvgItem.SubItems.Add(item.getIsDessert().ToString());
                 lvw_shoppingcart.Items.Add(bvgItem);
             }
         }

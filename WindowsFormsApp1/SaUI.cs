@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading;
+using PacketLibrary;
 
 namespace WindowsFormsApp1
 {
@@ -22,21 +26,21 @@ namespace WindowsFormsApp1
         private void SetUpListView1()
         {
             lvwOrder.Columns.Add("Num", "주문번호");
-            lvwOrder.Columns.Add("Type", "주문유형");
             lvwOrder.Columns.Add("Order", "주문목록");
             lvwOrder.Columns.Add("Time", "주문시간");
             lvwOrder.Columns.Add("Cost", "금액");
             lvwOrder.Columns.Add("Going", "진행도");
+            lvwOrder.Columns.Add("Option", "옵션");
         }
 
         private void SetUpListView2()
         {
             lvwOrderCom.Columns.Add("Num", "주문번호");
-            lvwOrderCom.Columns.Add("Type", "주문유형");
             lvwOrderCom.Columns.Add("Order", "주문목록");
             lvwOrderCom.Columns.Add("Time", "주문시간");
             lvwOrderCom.Columns.Add("Cost", "금액");
             lvwOrderCom.Columns.Add("Going", "진행도");
+            lvwOrderCom.Columns.Add("Option", "옵션");
 
         }
 
@@ -45,8 +49,9 @@ namespace WindowsFormsApp1
             SetUpListView1();
             SetUpListView2();
             lvwOrder.SelectedIndexChanged += LvwOrder_SelectedIndexChanged;
-            lvwOrder.Items.Add(new ListViewItem(new[] { "1", "매장", "아메리카노", DateTime.Now.ToString(), "15000", "진행 중" }));
-            lvwOrder.Items.Add(new ListViewItem(new[] { "2", "포장", "카페라떼", DateTime.Now.ToString(), "5000", "진행 중" }));
+
+            this.m_thread = new Thread(new ThreadStart(RUN));
+            this.m_thread.Start();
         }
 
         private void LvwOrder_SelectedIndexChanged(object sender, EventArgs e)
@@ -64,10 +69,10 @@ namespace WindowsFormsApp1
 
 
             ListViewItem selectedItem = lvwOrder.SelectedItems[0];
-            selectedItem.SubItems[5].Text = "완료";
+            selectedItem.SubItems[4].Text = "완료";
             lvwOrderCom.Items.Add((ListViewItem)selectedItem.Clone());
 
-            OnOrderCompleted(selectedItem.SubItems[0].Text, selectedItem.SubItems[5].Text);
+            OnOrderCompleted(selectedItem.SubItems[0].Text, selectedItem.SubItems[4].Text);
 
             lvwOrder.Items.Remove(selectedItem);
 
@@ -135,6 +140,88 @@ namespace WindowsFormsApp1
                     }
                 }
                 destination.Items.Add(newItem);
+            }
+        }
+
+        //통신
+        private NetworkStream m_networkstream;
+        private TcpListener m_listener;
+
+        private byte[] sendBuffer = new byte[1024 * 4];
+        private byte[] readBuffer = new byte[1024 * 4];
+
+        private bool m_bClientOn = false;
+
+        private Thread m_thread;
+
+        public ShoppingCart m_shoppingCartClass;
+
+        private void SaUI_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.m_listener.Stop();
+            this.m_networkstream.Close();
+            this.m_thread.Abort();
+        }
+        public void RUN()
+        {
+            this.m_listener = new TcpListener(7777);
+            this.m_listener.Start();
+
+
+            TcpClient client = this.m_listener.AcceptTcpClient();
+
+            if (client.Connected)
+            {
+                this.m_bClientOn = true;
+                m_networkstream = client.GetStream();
+            }
+
+            int nRead = 0;
+
+            while (this.m_bClientOn)
+            {
+                try
+                {
+                    nRead = 0;
+                    nRead = this.m_networkstream.Read(readBuffer, 0, 1024 * 4);
+                }
+                catch
+                {
+                    this.m_bClientOn = false;
+                    this.m_networkstream = null;
+                }
+
+                Packet packet = (Packet)Packet.Desserialize(this.readBuffer);
+
+                switch ((int)packet.Type)
+                {
+                    case (int)PacketType.주문:
+                        {
+                            ShoppingCart receivedCart = (ShoppingCart)Packet.Desserialize(this.readBuffer);
+                            foreach (var item in receivedCart.items)
+                            {
+                                string option = "";
+                                foreach(var a in item.option)
+                                {
+                                    if (a == -1)
+                                    {
+                                        break;
+                                    }
+                                    if (a == 0) option += "ICE, ";
+                                    if (a == 1) option += "HOT, ";
+                                    if (a == 2) option += "카페인, ";
+                                    if (a == 3) option += "디카페인, ";
+                                    if (a == 4) option += "얼음적게, ";
+                                    if (a == 5) option += "얼음보통, ";
+                                    if (a == 6) option += "얼음많이, ";
+                                    if (a == 7) option += "매장";
+                                    if (a == 8) option += "포장";
+                                }
+                                lvwOrder.Items.Add(new ListViewItem(new[] { receivedCart.orderNum.ToString(), item.getName(), DateTime.Now.ToString("tt h시 mm분"), item.getPrice().ToString(), "진행 중", option }));
+                            }
+                            break;
+                        }
+                }
             }
         }
     }

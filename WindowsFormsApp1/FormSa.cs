@@ -85,7 +85,7 @@ namespace WindowsFormsApp1
                                 foreach (var item in receivedCart.items)
                                 {
                                     this.txt_server_state.AppendText("이름: " + item.getName() + ", " + "가격: " + item.getPrice().ToString()
-                                        + ", " + "카테고리: "+ item.getCategory() + ", " + "케익여부: " + item.getIsDessert() + "\r\n");
+                                        + ", " + "카테고리: "+ item.getCategory() + "\r\n");
                                 }
                                 
                             }));

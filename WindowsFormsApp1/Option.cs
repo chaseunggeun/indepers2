@@ -33,7 +33,7 @@ namespace WindowsFormsApp1
         {
             string beverageName = widget1.Title;
             lbl_selectedBeverage.Text = beverageName;
-            optionarr = new int[3];
+            optionarr = new int[4];
             disableOption();
         }
 
@@ -62,7 +62,6 @@ namespace WindowsFormsApp1
             else
             {
                 optionarr[1] = 3;
-                //widget1.Cost += 500;
             }
 
             if (Radio_iceLess.Checked)
@@ -77,12 +76,20 @@ namespace WindowsFormsApp1
             {
                 optionarr[2] = 6;
             }
+            if(Radio_inStore.Checked)
+            {
+                optionarr[3] = 7;
+            }
+            else
+            {
+                optionarr[3] = 8;
+            }
         }
 
         private void btn_addShoppingCart_Click(object sender, EventArgs e)
         {
             setOption();
-            Beverage beverage = new Beverage((int)widget1.Cost, widget1.Name, widget1.Category.ToString(), false, optionarr);
+            Beverage beverage = new Beverage((int)widget1.Cost, widget1.Title, widget1.Category.ToString(), optionarr, false);
             ((SonUI)(this.Owner)).beverage = beverage;
             this.Close();
         }
