@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.Components;
+using PacketLibrary;
 
 namespace WindowsFormsApp1
 {
@@ -17,22 +18,58 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
+        public ShoppingCart shoppingCart;
+        public Beverage beverage;
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Stop();
+            this.Opacity = 1;
             docker.WindowState = Bunifu.UI.WinForms.BunifuFormDock.FormWindowStates.Maximized;
         }
 
         public void AddItem(string name,  double cost,categories category, string icon)
         {
-            pnl.Controls.Add(new Widget()
+            var w = new Widget()
             {
                 Title = name,
                 Cost = cost,
                 Category = category,
                 Icon = Image.FromFile("icons/" + icon)
-            }) ;
+            };
+            pnl.Controls.Add(w);
+
+            w.OnSelect += (ss, ee) =>
+            {
+                var wdg = (Widget)ss;
+                Option option = new Option(wdg);
+                option.Owner = this;
+                option.ShowDialog();
+                shoppingCart.AddItem(beverage);
+                foreach (DataGridViewRow item in grid.Rows)
+                {
+                    if (item.Cells[0].Value.ToString() == wdg.lblTitle.Text)
+                    {
+                        item.Cells[1].Value = int.Parse(item.Cells[1].Value.ToString()) + 1 ;
+                        item.Cells[2].Value = (int.Parse(item.Cells[1].Value.ToString())) * wdg._cost; 
+                        CalculateTotal();
+                        return;
+                    }
+                }
+                grid.Rows.Add(new object[] { wdg.lblTitle.Text, 1, wdg.Cost });
+                CalculateTotal();
+            };
+        }
+
+        void CalculateTotal()
+        {
+            double tot = 0;
+            foreach (DataGridViewRow item in grid.Rows)
+            {
+                
+                tot += int.Parse(item.Cells[2].Value.ToString().Replace(",", "").Replace("krw", ""));
+            }
+            lblTot.Text = tot.ToString("C2");
         }
 
         private void SonUI_Shown(object sender, EventArgs e)
@@ -60,6 +97,30 @@ namespace WindowsFormsApp1
                 var wdg = (Widget)item;
                 wdg.Visible = wdg.lblTitle.Text.ToLower().Contains(txtSearch.Text.Trim().ToLower());
             }
+        }
+
+        private void txtSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter || txtSearch.Text.Trim().Length == 0)
+            {
+                foreach (var item in pnl.Controls)
+                {
+                    var wdg = (Widget)item;
+                    wdg.Visible = wdg.lblTitle.Text.ToLower().Contains(txtSearch.Text.Trim().ToLower());
+                }
+            }
+        }
+
+        private void SonUI_Load(object sender, EventArgs e)
+        {
+            shoppingCart = new ShoppingCart();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            lblTot.Text = "0 krw";
+            shoppingCart.items.Clear();
+            grid.Rows.Clear();
         }
     }
 }

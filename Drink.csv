@@ -1,0 +1,17 @@
+﻿DrinkID,DrinkName,Price,Stock,Category
+1,아메리카노,3000000,1,Coffee
+2,카페라떼,2000000,1,Coffee
+3,아이스티,2500,1,nonCoffee
+4,말차라떼,500,1,nonCoffee
+5,밀크티,3500,1,nonCoffee
+6,초콜렛라떼,3500,1,nonCoffee
+7,베이글,3000,1,Dessert
+8,초콜렛칩쿠키,1500,1,Dessert
+9,딸기케이크,7900,1,Dessert
+10,와플,3500,1,Dessert
+11,마카롱,3000,1,Dessert
+12,콜라,2500,10,nonCoffee
+13,사이다,2000,3,nonCoffee
+14,우엉차,1000,100,nonCoffee
+15,,1000,2,
+16,,,,

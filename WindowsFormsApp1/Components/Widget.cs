@@ -14,8 +14,9 @@ namespace WindowsFormsApp1.Components
     public enum categories { Coffee, nonCoffee, Dessert}
     public partial class Widget : UserControl
     {
+
         private categories _category;
-        private double _cost;
+        public double _cost;
 
         public event EventHandler OnSelect = null;
         public Widget()
