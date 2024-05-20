@@ -48,5 +48,13 @@ namespace WindowsFormsApp1
             formUI.Show();
             this.Visible = false;
         }
+
+        private void btnSaUi_Click(object sender, EventArgs e)
+        {
+            SaUI SaUI = new SaUI();
+            SaUI.Owner = this;
+            SaUI.Show();
+            this.Visible = false;
+        }
     }
 }

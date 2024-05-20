@@ -32,14 +32,15 @@
             this.btnSa = new System.Windows.Forms.Button();
             this.btn_DBtest = new System.Windows.Forms.Button();
             this.btn_SonUITest = new System.Windows.Forms.Button();
+            this.btnSaUi = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSon
             // 
-            this.btnSon.Location = new System.Drawing.Point(60, 65);
-            this.btnSon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSon.Location = new System.Drawing.Point(111, 130);
+            this.btnSon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSon.Name = "btnSon";
-            this.btnSon.Size = new System.Drawing.Size(166, 159);
+            this.btnSon.Size = new System.Drawing.Size(308, 318);
             this.btnSon.TabIndex = 0;
             this.btnSon.Text = "손님용";
             this.btnSon.UseVisualStyleBackColor = true;
@@ -47,10 +48,10 @@
             // 
             // btnSa
             // 
-            this.btnSa.Location = new System.Drawing.Point(327, 65);
-            this.btnSa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSa.Location = new System.Drawing.Point(607, 130);
+            this.btnSa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSa.Name = "btnSa";
-            this.btnSa.Size = new System.Drawing.Size(166, 159);
+            this.btnSa.Size = new System.Drawing.Size(308, 318);
             this.btnSa.TabIndex = 1;
             this.btnSa.Text = "사장용";
             this.btnSa.UseVisualStyleBackColor = true;
@@ -58,10 +59,10 @@
             // 
             // btn_DBtest
             // 
-            this.btn_DBtest.Location = new System.Drawing.Point(35, 252);
-            this.btn_DBtest.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_DBtest.Location = new System.Drawing.Point(65, 504);
+            this.btn_DBtest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_DBtest.Name = "btn_DBtest";
-            this.btn_DBtest.Size = new System.Drawing.Size(85, 33);
+            this.btn_DBtest.Size = new System.Drawing.Size(158, 66);
             this.btn_DBtest.TabIndex = 2;
             this.btn_DBtest.Text = "DBtest";
             this.btn_DBtest.UseVisualStyleBackColor = true;
@@ -69,25 +70,36 @@
             // 
             // btn_SonUITest
             // 
-            this.btn_SonUITest.Location = new System.Drawing.Point(425, 252);
-            this.btn_SonUITest.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_SonUITest.Location = new System.Drawing.Point(364, 504);
+            this.btn_SonUITest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_SonUITest.Name = "btn_SonUITest";
-            this.btn_SonUITest.Size = new System.Drawing.Size(85, 33);
+            this.btn_SonUITest.Size = new System.Drawing.Size(158, 66);
             this.btn_SonUITest.TabIndex = 3;
             this.btn_SonUITest.Text = "SonUITest";
             this.btn_SonUITest.UseVisualStyleBackColor = true;
             this.btn_SonUITest.Click += new System.EventHandler(this.btn_SonUITest_Click);
             // 
+            // btnSaUi
+            // 
+            this.btnSaUi.Location = new System.Drawing.Point(746, 504);
+            this.btnSaUi.Name = "btnSaUi";
+            this.btnSaUi.Size = new System.Drawing.Size(169, 66);
+            this.btnSaUi.TabIndex = 4;
+            this.btnSaUi.Text = "SaUITest";
+            this.btnSaUi.UseVisualStyleBackColor = true;
+            this.btnSaUi.Click += new System.EventHandler(this.btnSaUi_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 300);
+            this.ClientSize = new System.Drawing.Size(1040, 600);
+            this.Controls.Add(this.btnSaUi);
             this.Controls.Add(this.btn_SonUITest);
             this.Controls.Add(this.btn_DBtest);
             this.Controls.Add(this.btnSa);
             this.Controls.Add(this.btnSon);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -100,6 +112,7 @@
         private System.Windows.Forms.Button btnSa;
         private System.Windows.Forms.Button btn_DBtest;
         private System.Windows.Forms.Button btn_SonUITest;
+        private System.Windows.Forms.Button btnSaUi;
     }
 }
 
