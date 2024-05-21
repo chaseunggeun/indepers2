@@ -77,8 +77,14 @@ namespace WindowsFormsApp1
             }
             lblTot.Text = tot.ToString("C2");
         }
-
-        private void SonUI_Shown(object sender, EventArgs e)
+        public void RemoveAllItems()
+        {
+            foreach(Widget widget in pnl.Controls)
+            {
+                pnl.Controls.Remove(widget);
+            }
+        }
+        private void loadItem()
         {
             //coffee
             AddItem("아메리카노", 3000, categories.Coffee, "americano.png");
@@ -94,6 +100,10 @@ namespace WindowsFormsApp1
             AddItem("딸기 케이크", 6000, categories.Dessert, "strawberrycake.png");
             AddItem("와플", 3500, categories.Dessert, "waffle.png");
             AddItem("마카롱", 4000, categories.Dessert, "macaron.png");
+        }
+        private void SonUI_Shown(object sender, EventArgs e)
+        {
+            loadItem();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -176,6 +186,8 @@ namespace WindowsFormsApp1
             lblTot.Text = "\\0 krw";
             shoppingCart.items.Clear();
             grid.Rows.Clear();
+            pnl.Controls.Clear();
+            loadItem();
         }
 
         private void SonUI_FormClosed(object sender, FormClosedEventArgs e)

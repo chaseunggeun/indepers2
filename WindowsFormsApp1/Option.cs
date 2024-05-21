@@ -89,9 +89,13 @@ namespace WindowsFormsApp1
         private void btn_addShoppingCart_Click(object sender, EventArgs e)
         {
             setOption();
+            this.Close();
+        }
+
+        private void Option_FormClosed(object sender, FormClosedEventArgs e)
+        {
             Beverage beverage = new Beverage((int)widget1.Cost, widget1.Title, widget1.Category.ToString(), optionarr, false);
             ((SonUI)(this.Owner)).beverage = beverage;
-            this.Close();
         }
     }
 }
