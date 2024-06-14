@@ -257,7 +257,6 @@ namespace WindowsFormsApp1
             // Decrease stock values for ordered items
             foreach (var item in shoppingCart.items)
             {
-                // Find the row in the DataTable
                 foreach (DataRow row in dataSet.Tables["Drink"].Rows)
                 {
                     if (row["DrinkName"].ToString() == item.getName())
@@ -266,7 +265,6 @@ namespace WindowsFormsApp1
                         {
                             row["Stock"] = stock - 1;
 
-                            // If stock reaches 0, mark as sold out
                             if (row["Stock"].ToString() == "0")
                             {
                                 foreach (Control control in pnl.Controls)
@@ -275,6 +273,18 @@ namespace WindowsFormsApp1
                                     {
                                         w.Enabled = false;
                                         w.Title += " (Sold Out)";
+                                        break;
+                                    }
+                                }
+                            }
+                            else if (row["Strock"].ToString() != "0")
+                            {
+                                foreach (Control control in pnl.Controls)
+                                {
+                                    if (control is Widget w && w.Title == item.getName())
+                                    {
+                                        w.Enabled = true;
+                                        w.Title += "";
                                         break;
                                     }
                                 }

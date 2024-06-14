@@ -33,8 +33,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.totalPrice = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.dataSet1 = new WindowsFormsApp1.DataSet1();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvIncome
@@ -87,6 +89,11 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "총액 :";
             // 
+            // dataSet1
+            // 
+            this.dataSet1.DataSetName = "DataSet1";
+            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // Income
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
@@ -100,6 +107,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -111,5 +119,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label totalPrice;
         private System.Windows.Forms.Label label2;
+        private DataSet1 dataSet1;
     }
 }

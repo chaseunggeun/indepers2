@@ -29,8 +29,19 @@ namespace WindowsFormsApp1
             cmdSheets.Items.Clear();
             cmdSheets.Items.Add("Drink");
             cmdSheets.SelectedIndex = 0;
+
+            PrintDrinkTable();
         }
 
+        private void PrintDrinkTable()
+        {
+            Console.WriteLine("===== Drink 테이블 내용 =====");
+            foreach (DataRow row in dataSet.Tables["Drink"].Rows)
+            {
+                Console.WriteLine($"DrinkID: {row["DrinkID"]}, DrinkName: {row["DrinkName"]}, Price: {row["Price"]}, Stock: {row["Stock"]}, Category: {row["Category"]}");
+            }
+            Console.WriteLine("============================");
+        }
 
         private void LoadCsvToTable(string filePath, string tableName)
         {
@@ -60,7 +71,6 @@ namespace WindowsFormsApp1
                 }
             }
         }
-
 
         private void SaveTableToCsv(DataTable table, string filePath)
         {
@@ -101,11 +111,11 @@ namespace WindowsFormsApp1
             MessageBox.Show("CSV 파일이 저장되었습니다.", "저장 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-
         private void cmdSheets_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dataSet != null && cmdSheets.SelectedItem != null)
             {
+                // DataGridView를 선택된 DataTable로 설정
                 dataGridView1.DataSource = dataSet.Tables[cmdSheets.SelectedItem.ToString()];
             }
         }
