@@ -10,15 +10,20 @@ using System.Windows.Forms;
 using WindowsFormsApp1.Components;
 using PacketLibrary;
 using System.Net.Sockets;
+using System.IO;
 
 namespace WindowsFormsApp1
 {
     public partial class SonUI : Form
     {
+        private DataSet1 dataSet;
+
         public SonUI()
         {
             InitializeComponent();
+            dataSet = new DataSet1();
         }
+
         public ShoppingCart shoppingCart;
         public Beverage beverage;
         public int orderNum;
@@ -30,7 +35,7 @@ namespace WindowsFormsApp1
             docker.WindowState = Bunifu.UI.WinForms.BunifuFormDock.FormWindowStates.Maximized;
         }
 
-        public void AddItem(string name,  double cost,categories category, string icon)
+        public void AddItem(string name, double cost, categories category, string icon, int stock)
         {
             var w = new Widget()
             {
@@ -39,25 +44,38 @@ namespace WindowsFormsApp1
                 Category = category,
                 Icon = Image.FromFile("icons/" + icon)
             };
+
+            if (stock == 0)
+            {
+                w.Enabled = false;
+                w.Title += " (Sold Out)";
+            }
+
             pnl.Controls.Add(w);
 
             w.OnSelect += (ss, ee) =>
             {
+                if (stock == 0)
+                {
+                    MessageBox.Show("This item is sold out.");
+                    return;
+                }
+
                 var wdg = (Widget)ss;
                 Option option = new Option(wdg);
                 option.Owner = this;
                 option.ShowDialog();
                 shoppingCart.AddItem(beverage);
-                if(wdg.Category == categories.Dessert)
+                if (wdg.Category == categories.Dessert)
                 {
-                    beverage.option[0] = -1; 
+                    beverage.option[0] = -1;
                 }
                 foreach (DataGridViewRow item in grid.Rows)
                 {
                     if (item.Cells[0].Value.ToString() == wdg.lblTitle.Text)
                     {
-                        item.Cells[1].Value = int.Parse(item.Cells[1].Value.ToString()) + 1 ;
-                        item.Cells[2].Value = (int.Parse(item.Cells[1].Value.ToString())) * wdg._cost; 
+                        item.Cells[1].Value = int.Parse(item.Cells[1].Value.ToString()) + 1;
+                        item.Cells[2].Value = (int.Parse(item.Cells[1].Value.ToString())) * wdg._cost;
                         CalculateTotal();
                         return;
                     }
@@ -72,34 +90,93 @@ namespace WindowsFormsApp1
             double tot = 0;
             foreach (DataGridViewRow item in grid.Rows)
             {
-                
                 tot += int.Parse(item.Cells[2].Value.ToString().Replace(",", "").Replace("krw", ""));
             }
             lblTot.Text = tot.ToString("C2");
         }
-        public void RemoveAllItems()
+
+        public void ReadCsvAndPopulateTable(string filePath, DataTable drinkTable)
         {
-            foreach(Widget widget in pnl.Controls)
+            var lines = File.ReadAllLines(filePath);
+
+            var columnNames = lines[0].Split(',');
+
+            var dataLines = lines.Skip(1);
+            foreach (var line in dataLines)
             {
-                pnl.Controls.Remove(widget);
+                var values = line.Split(',');
+                var row = drinkTable.NewRow();
+
+                if (int.TryParse(values[0], out int drinkId))
+                {
+                    row["DrinkID"] = drinkId;
+                }
+                else
+                {
+                    row["DrinkID"] = 0;
+                }
+
+                row["DrinkName"] = values[1];
+
+                if (double.TryParse(values[2], out double price))
+                {
+                    row["Price"] = price;
+                }
+                else
+                {
+                    row["Price"] = 0.0;
+                }
+
+                if (int.TryParse(values[3], out int stock))
+                {
+                    row["Stock"] = stock;
+                }
+                else
+                {
+                    row["Stock"] = 0;
+                }
+
+                row["Category"] = values[4];
+
+                drinkTable.Rows.Add(row);
             }
         }
         private void loadItem()
         {
-            //coffee
-            AddItem("아메리카노", 3000, categories.Coffee, "americano.png");
-            AddItem("카페라떼", 3500, categories.Coffee, "cafelatte.png");
-            //non-coffee
-            AddItem("아이스티", 2500, categories.nonCoffee, "icetea.png");
-            AddItem("말차 라떼", 3500, categories.nonCoffee, "matchalatte.png");
-            AddItem("밀크티", 3500, categories.nonCoffee, "milktea.png");
-            AddItem("초콜렛 라떼", 3500, categories.nonCoffee, "chocolatelatte.png");
-            //dessert
-            AddItem("베이글", 3000, categories.Dessert, "bagel.png");
-            AddItem("초콜렛칩 쿠키", 2000, categories.Dessert, "cookie.png");
-            AddItem("딸기 케이크", 6000, categories.Dessert, "strawberrycake.png");
-            AddItem("와플", 3500, categories.Dessert, "waffle.png");
-            AddItem("마카롱", 4000, categories.Dessert, "macaron.png");
+            try
+            {
+                string csvFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Drink.csv");
+
+                ReadCsvAndPopulateTable(csvFilePath, dataSet.Tables["Drink"]);
+
+                foreach (DataRow row in dataSet.Tables["Drink"].Rows)
+                {
+                    string drinkName = row["DrinkName"].ToString();
+
+                    if (!double.TryParse(row["Price"].ToString(), out double price))
+                    {
+                        price = 0.0;
+                    }
+
+                    if (!int.TryParse(row["Stock"].ToString(), out int stock))
+                    {
+                        stock = 0;
+                    }
+
+                    if (!Enum.TryParse(row["Category"].ToString(), out categories category))
+                    {
+                        category = categories.nonCoffee;
+                    }
+
+                    string icon = drinkName.ToLower().Replace(" ", "") + ".png";
+
+                    AddItem(drinkName, price, category, icon, stock);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("오류 발생: " + ex.Message);
+            }
         }
         private void SonUI_Shown(object sender, EventArgs e)
         {
@@ -108,7 +185,7 @@ namespace WindowsFormsApp1
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            foreach(var item in pnl.Controls)
+            foreach (var item in pnl.Controls)
             {
                 var wdg = (Widget)item;
                 wdg.Visible = wdg.lblTitle.Text.ToLower().Contains(txtSearch.Text.Trim().ToLower());
@@ -117,7 +194,7 @@ namespace WindowsFormsApp1
 
         private void txtSearch_KeyUp(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter || txtSearch.Text.Trim().Length == 0)
+            if (e.KeyCode == Keys.Enter || txtSearch.Text.Trim().Length == 0)
             {
                 foreach (var item in pnl.Controls)
                 {
@@ -152,8 +229,8 @@ namespace WindowsFormsApp1
             shoppingCart.items.Clear();
             grid.Rows.Clear();
         }
-        
-        //통신
+
+        // 통신
         private NetworkStream m_networkstream;
         private TcpClient m_client;
         private byte[] sendBuffer = new byte[1024 * 4];
@@ -176,6 +253,38 @@ namespace WindowsFormsApp1
             {
                 return;
             }
+
+            // Decrease stock values for ordered items
+            foreach (var item in shoppingCart.items)
+            {
+                // Find the row in the DataTable
+                foreach (DataRow row in dataSet.Tables["Drink"].Rows)
+                {
+                    if (row["DrinkName"].ToString() == item.getName())
+                    {
+                        if (int.TryParse(row["Stock"].ToString(), out int stock))
+                        {
+                            row["Stock"] = stock - 1;
+
+                            // If stock reaches 0, mark as sold out
+                            if (row["Stock"].ToString() == "0")
+                            {
+                                foreach (Control control in pnl.Controls)
+                                {
+                                    if (control is Widget w && w.Title == item.getName())
+                                    {
+                                        w.Enabled = false;
+                                        w.Title += " (Sold Out)";
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+
             shoppingCart.orderNum = this.orderNum;
             shoppingCart.Type = (int)PacketType.주문;
 
@@ -186,9 +295,9 @@ namespace WindowsFormsApp1
             lblTot.Text = "\\0 krw";
             shoppingCart.items.Clear();
             grid.Rows.Clear();
-            pnl.Controls.Clear();
-            loadItem();
         }
+
+
 
         private void SonUI_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -197,3 +306,4 @@ namespace WindowsFormsApp1
         }
     }
 }
+

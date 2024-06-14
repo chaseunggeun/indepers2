@@ -10,12 +10,15 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.IO;
 using PacketLibrary;
 
 namespace WindowsFormsApp1
 {
     public partial class SaUI : Form
     {
+        private int orderID = 1; // Initialize OrderID
+
         public SaUI()
         {
             InitializeComponent();
@@ -41,7 +44,6 @@ namespace WindowsFormsApp1
             lvwOrderCom.Columns.Add("Cost", "금액");
             lvwOrderCom.Columns.Add("Going", "진행도");
             lvwOrderCom.Columns.Add("Option", "옵션");
-
         }
 
         private void SaUI_Load(object sender, EventArgs e)
@@ -66,7 +68,6 @@ namespace WindowsFormsApp1
         {
             if (lvwOrder.SelectedItems.Count == 0)
                 return;
-
 
             ListViewItem selectedItem = lvwOrder.SelectedItems[0];
             selectedItem.SubItems[4].Text = "완료";
@@ -108,14 +109,13 @@ namespace WindowsFormsApp1
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
-            Inventory inventoryForm = new Inventory();
+            Form2 inventoryForm = new Form2();
             inventoryForm.ShowDialog();
         }
 
         private void btnIncome_Click(object sender, EventArgs e)
         {
             Income incomeForm = new Income();
-            incomeForm.AddItemsToListView(lvwOrderCom);
             incomeForm.ShowDialog();
         }
 
@@ -143,7 +143,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        //통신
+        // 통신
         private NetworkStream m_networkstream;
         private TcpListener m_listener;
 
@@ -162,11 +162,11 @@ namespace WindowsFormsApp1
             this.m_networkstream.Close();
             this.m_thread.Abort();
         }
+
         public void RUN()
         {
-            this.m_listener = new TcpListener(7777);
+            this.m_listener = new TcpListener(IPAddress.Any, 7777);
             this.m_listener.Start();
-
 
             TcpClient client = this.m_listener.AcceptTcpClient();
 
@@ -201,7 +201,7 @@ namespace WindowsFormsApp1
                             foreach (var item in receivedCart.items)
                             {
                                 string option = "";
-                                foreach(var a in item.option)
+                                foreach (var a in item.option)
                                 {
                                     if (a == -1)
                                     {
@@ -217,11 +217,45 @@ namespace WindowsFormsApp1
                                     if (a == 7) option += "매장";
                                     if (a == 8) option += "포장";
                                 }
-                                lvwOrder.Items.Add(new ListViewItem(new[] { receivedCart.orderNum.ToString(), item.getName(), DateTime.Now.ToString("tt h시 mm분"), item.getPrice().ToString(), "진행 중", option }));
+                                string[] row = new string[] { receivedCart.orderNum.ToString(), item.getName(),
+                                DateTime.Now.ToString("tt h시 mm분"), item.getPrice().ToString(), "진행 중", option };
+                                AddOrderToListView(row);
+                                SaveOrderToCSV(item.getName(), DateTime.Now.ToString("tt h시 mm분"), item.getPrice().ToString());
                             }
                             break;
                         }
                 }
+            }
+        }
+
+        private void AddOrderToListView(string[] row)
+        {
+            if (lvwOrder.InvokeRequired)
+            {
+                lvwOrder.Invoke(new Action<string[]>(AddOrderToListView), new object[] { row });
+            }
+            else
+            {
+                lvwOrder.Items.Add(new ListViewItem(row));
+            }
+        }
+
+        private void SaveOrderToCSV(string orderedDrink, string date, string price)
+        {
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Order.csv");
+
+            if (!File.Exists(filePath))
+            {
+                using (StreamWriter sw = File.CreateText(filePath))
+                {
+                    sw.WriteLine("OrderID,OrderedDrink,Date,Price");
+                }
+            }
+
+            using (StreamWriter sw = File.AppendText(filePath))
+            {
+                sw.WriteLine($"{orderID},{orderedDrink},{date},{price}");
+                orderID++;
             }
         }
     }

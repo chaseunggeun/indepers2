@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -15,26 +11,49 @@ namespace WindowsFormsApp1
         public Income()
         {
             InitializeComponent();
+            LoadDataIntoDataGridView();
         }
 
-        public ListView IncomeList => lvwIncomeList; // lvwIncomeList를 외부에서 접근할 수 있도록 함
-
-        // 다른 클래스에서 lvwIncomeList에 항목을 추가하기 위한 메서드
-        public void AddItemsToListView(ListView source)
+        private void LoadDataIntoDataGridView()
         {
-            foreach (ListViewItem item in source.Items)
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Order.csv");
+            if (!File.Exists(filePath))
             {
-                ListViewItem newItem = new ListViewItem(item.SubItems[0].Text); // 주문번호 추가
-
-                // 나머지 서브아이템 추가
-                for (int i = 1; i < item.SubItems.Count; i++)
-                {
-                    newItem.SubItems.Add(item.SubItems[i].Text);
-                }
-
-                lvwIncomeList.Items.Add(newItem); // ListView에 ListViewItem 추가
+                MessageBox.Show("Order.csv file does not exist.");
+                return;
             }
-        }
 
+            DataTable dataTable = new DataTable();
+
+            string[] csvLines = File.ReadAllLines(filePath);
+            if (csvLines.Length > 0)
+            {
+                string[] headers = csvLines[0].Split(',');
+                foreach (string header in headers)
+                {
+                    dataTable.Columns.Add(header);
+                }
+                for (int i = 1; i < csvLines.Length; i++)
+                {
+                    string[] rowData = csvLines[i].Split(',');
+                    dataTable.Rows.Add(rowData);
+                }
+            }
+
+            dgvIncome.DataSource = dataTable;
+
+            // Calculate total price
+            int TotalPrice = 0;
+            foreach (DataRow row in dataTable.Rows)
+            {
+                int price;
+                if (int.TryParse(row["Price"].ToString(), out price))
+                {
+                    TotalPrice += price;
+                }
+            }
+
+            totalPrice.Text = "총계: " + TotalPrice.ToString() + "원";
+        }
     }
 }

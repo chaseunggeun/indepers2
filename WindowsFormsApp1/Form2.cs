@@ -17,21 +17,20 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
-        private void LoadCsv(string drinkFilePath, string optionFilePath)
+        private void LoadCsv()
         {
             // DataSet 초기화
             dataSet = new DataSet1();
 
             // Drink 테이블 로드
-            LoadCsvToTable(drinkFilePath, "Drink");
-            // Option 테이블 로드
-            LoadCsvToTable(optionFilePath, "Option");
+            string csvFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Drink.csv");
+            LoadCsvToTable(csvFilePath, "Drink");
 
             cmdSheets.Items.Clear();
             cmdSheets.Items.Add("Drink");
-            cmdSheets.Items.Add("Option");
             cmdSheets.SelectedIndex = 0;
         }
+
 
         private void LoadCsvToTable(string filePath, string tableName)
         {
@@ -83,32 +82,7 @@ namespace WindowsFormsApp1
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            openFileDialog1.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
-            openFileDialog1.Multiselect = true;
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                string[] fileNames = openFileDialog1.FileNames;
-                if (fileNames.Length == 2) // 두 개의 파일을 선택했는지 확인
-                {
-                    string drinkFilePath = fileNames[0];
-                    string optionFilePath = fileNames[1];
-
-                    if (File.Exists(drinkFilePath) && File.Exists(optionFilePath))
-                    {
-                        LoadCsv(drinkFilePath, optionFilePath);
-                    }
-                    else
-                    {
-                        MessageBox.Show("유효한 파일 경로를 확인하세요.", "파일 경로 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("두 개의 CSV 파일을 선택하세요.", "파일 선택 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            LoadCsv();
         }
 
         private void Form2_Load_1(object sender, EventArgs e)
@@ -118,32 +92,15 @@ namespace WindowsFormsApp1
 
         private void saveBtn_Click_1(object sender, EventArgs e)
         {
-            // SaveFileDialog를 사용하여 사용자가 저장할 경로 선택
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-            {
-                saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                saveFileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
-                saveFileDialog.FileName = "Drink.csv"; // 기본 파일 이름 설정
+            // Drink 테이블을 저장할 파일 경로
+            string drinkFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Drink.csv");
 
-                // 사용자가 저장 경로를 선택하고 확인을 누를 때
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string saveDirectory = Path.GetDirectoryName(saveFileDialog.FileName);
+            // Drink 테이블 저장
+            SaveTableToCsv(dataSet.Tables["Drink"], drinkFilePath);
 
-                    // Drink 테이블을 저장할 파일 경로
-                    string drinkFilePath = Path.Combine(saveDirectory, "Drink.csv");
-                    // Option 테이블을 저장할 파일 경로
-                    string optionFilePath = Path.Combine(saveDirectory, "Option.csv");
-
-                    // Drink 테이블 저장
-                    SaveTableToCsv(dataSet.Tables["Drink"], drinkFilePath);
-                    // Option 테이블 저장
-                    SaveTableToCsv(dataSet.Tables["Option"], optionFilePath);
-
-                    MessageBox.Show("CSV 파일이 저장되었습니다.", "저장 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
+            MessageBox.Show("CSV 파일이 저장되었습니다.", "저장 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
 
         private void cmdSheets_SelectedIndexChanged(object sender, EventArgs e)
         {
