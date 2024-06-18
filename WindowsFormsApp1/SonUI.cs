@@ -277,7 +277,7 @@ namespace WindowsFormsApp1
                                     }
                                 }
                             }
-                            else if (row["Strock"].ToString() != "0")
+                            else if (row["Stock"].ToString() != "0")
                             {
                                 foreach (Control control in pnl.Controls)
                                 {
